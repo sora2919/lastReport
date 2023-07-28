@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewIspanProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ForumCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Depiction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Icon" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsVisible" Type="Boolean" />
+    <NavigationProperty Name="ForumPostCategory" Relationship="Self.FK_ForumPostCategory_ForumCategory" FromRole="ForumCategory" ToRole="ForumPostCategory" />
+  </EntityType>
+  <EntityType Name="ForumPost">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="ForumPost1" Relationship="Self.FK_forumPost_forumPost" FromRole="ForumPost" ToRole="ForumPost1" />
+    <NavigationProperty Name="ForumPost2" Relationship="Self.FK_forumPost_forumPost" FromRole="ForumPost1" ToRole="ForumPost" />
+    <NavigationProperty Name="ForumStatus" Relationship="Self.FK_ForumPost_ForumStatus" FromRole="ForumPost" ToRole="ForumStatus" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ForumPost_MemberAccount" FromRole="ForumPost" ToRole="MemberAccount" />
+    <NavigationProperty Name="ForumPostCategory" Relationship="Self.FK_ForumPostCategory_forumPost" FromRole="ForumPost" ToRole="ForumPostCategory" />
+    <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_forumPost" FromRole="ForumPost" ToRole="ForumPostComment" />
+  </EntityType>
+  <EntityType Name="ForumPostCategory">
+    <Key>
+      <PropertyRef Name="PostCategoryID" />
+    </Key>
+    <Property Name="PostCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ForumCategory" Relationship="Self.FK_ForumPostCategory_ForumCategory" FromRole="ForumPostCategory" ToRole="ForumCategory" />
+    <NavigationProperty Name="ForumPost" Relationship="Self.FK_ForumPostCategory_forumPost" FromRole="ForumPostCategory" ToRole="ForumPost" />
+  </EntityType>
+  <EntityType Name="ForumPostComment">
+    <Key>
+      <PropertyRef Name="PostCommentID" />
+    </Key>
+    <Property Name="PostCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="ForumPost" Relationship="Self.FK_ForumPostComment_forumPost" FromRole="ForumPostComment" ToRole="ForumPost" />
+    <NavigationProperty Name="ForumPostComment1" Relationship="Self.FK_ForumPostComment_ForumPostComment" FromRole="ForumPostComment" ToRole="ForumPostComment1" />
+    <NavigationProperty Name="ForumPostComment2" Relationship="Self.FK_ForumPostComment_ForumPostComment" FromRole="ForumPostComment1" ToRole="ForumPostComment" />
+    <NavigationProperty Name="ForumStatus" Relationship="Self.FK_ForumPostComment_ForumStatus" FromRole="ForumPostComment" ToRole="ForumStatus" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ForumPostComment_MemberAccount" FromRole="ForumPostComment" ToRole="MemberAccount" />
+  </EntityType>
+  <EntityType Name="ForumStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ForumPost" Relationship="Self.FK_ForumPost_ForumStatus" FromRole="ForumStatus" ToRole="ForumPost" />
+    <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_ForumStatus" FromRole="ForumStatus" ToRole="ForumPostComment" />
+  </EntityType>
+  <EntityType Name="MemberAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
+    <Property Name="MemberTotalPoint" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IDCardNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BitrhDay" Type="DateTime" Precision="3" />
+    <Property Name="PhoneNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MemberPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="ForumPost" Relationship="Self.FK_ForumPost_MemberAccount" FromRole="MemberAccount" ToRole="ForumPost" />
+    <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_MemberAccount" FromRole="MemberAccount" ToRole="ForumPostComment" />
+    <NavigationProperty Name="ChatMessage" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="MemberAccount" ToRole="ChatMessage" />
+    <NavigationProperty Name="ChatMessage1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="MemberAccount" ToRole="ChatMessage" />
+    <NavigationProperty Name="MemberRoleConn" Relationship="Self.FK_MemberRoleConn_MemberAccount" FromRole="MemberAccount" ToRole="MemberRoleConn" />
+  </EntityType>
+  <EntityType Name="MemberRoleConn">
+    <Key>
+      <PropertyRef Name="MemberRoleID" />
+    </Key>
+    <Property Name="MemberRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_MemberRoleConn_MemberAccount" FromRole="MemberRoleConn" ToRole="MemberAccount" />
+    <NavigationProperty Name="RoleInfo" Relationship="Self.FK_MemberRoleConn_RoleInfo" FromRole="MemberRoleConn" ToRole="RoleInfo" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="RatingID" />
+    </Key>
+    <Property Name="RatingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RatingStar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RatingContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RatingDate" Type="DateTime" Precision="3" />
+    <Property Name="SourceRoleID" Type="Int32" />
+    <Property Name="SourceAccountID" Type="Int32" />
+    <Property Name="TargetRoleID" Type="Int32" />
+    <Property Name="TargetAccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MemberRoleConn" Relationship="Self.FK_MemberRoleConn_RoleInfo" FromRole="RoleInfo" ToRole="MemberRoleConn" />
+  </EntityType>
+  <EntityType Name="ChatMessage">
+    <Key>
+      <PropertyRef Name="ChatMessageID" />
+      <PropertyRef Name="SenderID" />
+      <PropertyRef Name="ReceiverID" />
+      <PropertyRef Name="Message" />
+      <PropertyRef Name="Created" />
+    </Key>
+    <Property Name="ChatMessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SenderID" Type="Int32" Nullable="false" />
+    <Property Name="ReceiverID" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="ChatMessage" ToRole="MemberAccount" />
+    <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="ChatMessage" ToRole="MemberAccount" />
+  </EntityType>
+  <Association Name="FK_ForumPostCategory_ForumCategory">
+    <End Role="ForumCategory" Type="Self.ForumCategory" Multiplicity="1" />
+    <End Role="ForumPostCategory" Type="Self.ForumPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumCategory">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="ForumPostCategory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_forumPost_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="0..1" />
+    <End Role="ForumPost1" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPost1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPost_ForumStatus">
+    <End Role="ForumStatus" Type="Self.ForumStatus" Multiplicity="1" />
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ForumPost">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPost_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ForumPost">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostCategory_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="1" />
+    <End Role="ForumPostCategory" Type="Self.ForumPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPostCategory">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_ForumPostComment">
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="0..1" />
+    <End Role="ForumPostComment1" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPostComment">
+        <PropertyRef Name="PostCommentID" />
+      </Principal>
+      <Dependent Role="ForumPostComment1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_ForumStatus">
+    <End Role="ForumStatus" Type="Self.ForumStatus" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_MemberAccountReceiver">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="ReceiverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_MemberAccountSender">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="SenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberRoleConn_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="MemberRoleConn" Type="Self.MemberRoleConn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="MemberRoleConn">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberRoleConn_RoleInfo">
+    <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1" />
+    <End Role="MemberRoleConn" Type="Self.MemberRoleConn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInfo">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="MemberRoleConn">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NewIspanProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ForumCategory" EntityType="Self.ForumCategory" />
+    <EntitySet Name="ForumPost" EntityType="Self.ForumPost" />
+    <EntitySet Name="ForumPostCategory" EntityType="Self.ForumPostCategory" />
+    <EntitySet Name="ForumPostComment" EntityType="Self.ForumPostComment" />
+    <EntitySet Name="ForumStatus" EntityType="Self.ForumStatus" />
+    <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" />
+    <EntitySet Name="MemberRoleConn" EntityType="Self.MemberRoleConn" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" />
+    <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" />
+    <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" />
+    <AssociationSet Name="FK_ForumPostCategory_ForumCategory" Association="Self.FK_ForumPostCategory_ForumCategory">
+      <End Role="ForumCategory" EntitySet="ForumCategory" />
+      <End Role="ForumPostCategory" EntitySet="ForumPostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_forumPost_forumPost" Association="Self.FK_forumPost_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPost1" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPost_ForumStatus" Association="Self.FK_ForumPost_ForumStatus">
+      <End Role="ForumStatus" EntitySet="ForumStatus" />
+      <End Role="ForumPost" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPost_MemberAccount" Association="Self.FK_ForumPost_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ForumPost" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostCategory_forumPost" Association="Self.FK_ForumPostCategory_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPostCategory" EntitySet="ForumPostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_forumPost" Association="Self.FK_ForumPostComment_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_ForumPostComment" Association="Self.FK_ForumPostComment_ForumPostComment">
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+      <End Role="ForumPostComment1" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_ForumStatus" Association="Self.FK_ForumPostComment_ForumStatus">
+      <End Role="ForumStatus" EntitySet="ForumStatus" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_MemberAccount" Association="Self.FK_ForumPostComment_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_MemberAccountReceiver" Association="Self.FK_ChatMessage_MemberAccountReceiver">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatMessage" EntitySet="ChatMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_MemberAccountSender" Association="Self.FK_ChatMessage_MemberAccountSender">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatMessage" EntitySet="ChatMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberRoleConn_MemberAccount" Association="Self.FK_MemberRoleConn_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberRoleConn" EntitySet="MemberRoleConn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberRoleConn_RoleInfo" Association="Self.FK_MemberRoleConn_RoleInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+      <End Role="MemberRoleConn" EntitySet="MemberRoleConn" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

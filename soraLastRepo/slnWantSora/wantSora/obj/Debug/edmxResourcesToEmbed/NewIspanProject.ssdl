@@ -1,0 +1,1650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewIspanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApplicationList">
+    <Key>
+      <PropertyRef Name="ApplicationListID" />
+    </Key>
+    <Property Name="ResumeID" Type="int" />
+    <Property Name="ApplicationListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="CaseStatusID" Type="int" />
+    <Property Name="RatingID" Type="int" />
+  </EntityType>
+  <EntityType Name="CaseSkill">
+    <Key>
+      <PropertyRef Name="CaseSkillID" />
+    </Key>
+    <Property Name="CaseSkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillID" Type="int" />
+    <Property Name="CaseID" Type="int" />
+  </EntityType>
+  <EntityType Name="CaseStatusList">
+    <Key>
+      <PropertyRef Name="CaseStatusID" />
+    </Key>
+    <Property Name="CaseStatusID" Type="int" Nullable="false" />
+    <Property Name="CaseStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Certificate">
+    <Key>
+      <PropertyRef Name="CertificateID" />
+    </Key>
+    <Property Name="CertificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificateTypeID" Type="int" Nullable="false" />
+    <Property Name="CertificateName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CertificateType">
+    <Key>
+      <PropertyRef Name="CertificateTypeID" />
+    </Key>
+    <Property Name="CertificateTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificateTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ChatBlockList">
+    <Key>
+      <PropertyRef Name="ChatBlockListID" />
+    </Key>
+    <Property Name="ChatBlockListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="BlockedID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'NewIspanProject.dbo.ChatMessage' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="ChatMessage">
+    <Key>
+      <PropertyRef Name="ChatMessageID" />
+      <PropertyRef Name="SenderID" />
+      <PropertyRef Name="ReceiverID" />
+      <PropertyRef Name="Message" />
+      <PropertyRef Name="Created" />
+    </Key>
+    <Property Name="ChatMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SenderID" Type="int" Nullable="false" />
+    <Property Name="ReceiverID" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CheckIn">
+    <Key>
+      <PropertyRef Name="CheckID" />
+    </Key>
+    <Property Name="CheckID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="CheckDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckPoint" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExpertApplication">
+    <Key>
+      <PropertyRef Name="ApplicationListID" />
+    </Key>
+    <Property Name="ApplicationListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="CaseStatusID" Type="int" />
+    <Property Name="RatingID" Type="int" />
+  </EntityType>
+  <EntityType Name="ExpertResume">
+    <Key>
+      <PropertyRef Name="ResumeID" />
+    </Key>
+    <Property Name="ResumeID" Type="int" Nullable="false" />
+    <Property Name="Introduction" Type="nvarchar(max)" />
+    <Property Name="WorksUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="ServiceMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="Problem" Type="nvarchar(max)" />
+    <Property Name="CommonPrice" Type="money" />
+    <Property Name="HistoricalViews" Type="int" />
+  </EntityType>
+  <EntityType Name="ExpertWorkList">
+    <Key>
+      <PropertyRef Name="WorksListID" />
+    </Key>
+    <Property Name="WorksListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorksID" Type="int" />
+    <Property Name="ResumeID" Type="int" />
+  </EntityType>
+  <EntityType Name="ExpertWorks">
+    <Key>
+      <PropertyRef Name="WorksID" />
+    </Key>
+    <Property Name="WorksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorksPhoto" Type="varbinary(max)" />
+    <Property Name="DataCreateDate" Type="datetime" />
+    <Property Name="Workname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ForgetPassword">
+    <Key>
+      <PropertyRef Name="ForgetID" />
+    </Key>
+    <Property Name="ForgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="TemporaryPassword" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ForgetCountInAWeek" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ForumCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Depiction" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Icon" Type="varbinary(max)" />
+    <Property Name="IsVisible" Type="bit" />
+  </EntityType>
+  <EntityType Name="ForumPost">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" />
+    <Property Name="Status" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ForumPostCategory">
+    <Key>
+      <PropertyRef Name="PostCategoryID" />
+    </Key>
+    <Property Name="PostCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ForumPostComment">
+    <Key>
+      <PropertyRef Name="PostCommentID" />
+    </Key>
+    <Property Name="PostCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="text" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" />
+    <Property Name="Status" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ForumStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'NewIspanProject.dbo.HumanList' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="HumanList">
+    <Key>
+      <PropertyRef Name="HumanListID" />
+    </Key>
+    <Property Name="CaseID" Type="int" />
+    <Property Name="HumanListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseStatusID" Type="int" />
+    <Property Name="ApplicantID" Type="int" />
+    <Property Name="SenderID" Type="int" />
+  </EntityType>
+  <EntityType Name="Keyword">
+    <Key>
+      <PropertyRef Name="KeywordID" />
+    </Key>
+    <Property Name="KeywordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeywordContent" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoginHistory">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="LoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="LoginS/F" Type="bit" Nullable="false" />
+    <Property Name="LoginTime" Type="datetime" Nullable="false" />
+    <Property Name="PasswordFailCount" Type="int" Nullable="false" />
+    <Property Name="MemberInfoFinished" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="AccountStatus" Type="bit" Nullable="false" />
+    <Property Name="MemberTotalPoint" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="IDCardNo" Type="nchar" MaxLength="10" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="2" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="10" />
+    <Property Name="BitrhDay" Type="datetime" />
+    <Property Name="PhoneNo" Type="nchar" MaxLength="10" />
+    <Property Name="MemberPhoto" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="MemberCollection">
+    <Key>
+      <PropertyRef Name="CollectionID" />
+    </Key>
+    <Property Name="CollectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="ResumeID" Type="int" />
+  </EntityType>
+  <EntityType Name="MemberRoleConn">
+    <Key>
+      <PropertyRef Name="MemberRoleID" />
+    </Key>
+    <Property Name="MemberRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberStatusList">
+    <Key>
+      <PropertyRef Name="StatusChangeID" />
+    </Key>
+    <Property Name="StatusChangeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="UpdateUser" Type="int" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="StatusChangeReasonID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="PayWayID" Type="int" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="OrderPrice" Type="int" />
+    <Property Name="OrderPoint" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="OrderGetPoint" Type="int" />
+    <Property Name="OrderUsePoint" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderdetailID" />
+    </Key>
+    <Property Name="OrderdetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="ResumeID" Type="int" />
+    <Property Name="UnitPrice" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Discount" Type="real" />
+    <Property Name="TopDate" Type="int" />
+    <Property Name="TopType" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPoint" Type="int" />
+    <Property Name="GetPoint" Type="int" />
+  </EntityType>
+  <EntityType Name="PayWay">
+    <Key>
+      <PropertyRef Name="PayWayID" />
+    </Key>
+    <Property Name="PayWayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PayWayName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="int" />
+    <Property Name="CoverPhoto" Type="varbinary(max)" />
+    <Property Name="ProductDesc" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="PostStartDate" Type="datetime" />
+    <Property Name="PostEndDate" Type="datetime" />
+    <Property Name="UnitsInStock" Type="int" />
+    <Property Name="TopDate" Type="int" />
+    <Property Name="TopType" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPoint" Type="int" />
+    <Property Name="GetPoint" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductPhoto">
+    <Key>
+      <PropertyRef Name="ProductPhotoID" />
+    </Key>
+    <Property Name="ProductPhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="ProductPhotoName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductPhoto" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="RatingID" />
+    </Key>
+    <Property Name="RatingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RatingStar" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RatingContent" Type="nvarchar" MaxLength="50" />
+    <Property Name="RatingDate" Type="datetime" />
+    <Property Name="SourceRoleID" Type="int" />
+    <Property Name="SourceAccountID" Type="int" />
+    <Property Name="TargetRoleID" Type="int" />
+    <Property Name="TargetAccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="Resume">
+    <Key>
+      <PropertyRef Name="ResumeID" />
+    </Key>
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="ResumeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TownID" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Autobiography" Type="nvarchar" MaxLength="400" />
+    <Property Name="WorkingHoursID" Type="int" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="OnTop" Type="int" />
+    <Property Name="TaskNameID" Type="int" />
+    <Property Name="IsExpertOrNot" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResumeApplication">
+    <Key>
+      <PropertyRef Name="ResumeApplicationID" />
+    </Key>
+    <Property Name="ResumeApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResumeID" Type="int" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="CaseStatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="ResumeCertificate">
+    <Key>
+      <PropertyRef Name="ResumeCertificateID" />
+    </Key>
+    <Property Name="ResumeCertificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificateID" Type="int" Nullable="false" />
+    <Property Name="ResumeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResumeKeywordList">
+    <Key>
+      <PropertyRef Name="ResumeKeywordListID" />
+    </Key>
+    <Property Name="ResumeKeywordListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResumeID" Type="int" />
+    <Property Name="KeywordID" Type="int" />
+  </EntityType>
+  <EntityType Name="ResumeSkill">
+    <Key>
+      <PropertyRef Name="ResumeSkillID" />
+    </Key>
+    <Property Name="ResumeSkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillID" Type="int" Nullable="false" />
+    <Property Name="ResumeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="SalaryID" />
+    </Key>
+    <Property Name="SalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Payment" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentDate" Type="date" />
+  </EntityType>
+  <EntityType Name="ServiceContact">
+    <Key>
+      <PropertyRef Name="ServiceContactID" />
+    </Key>
+    <Property Name="ServiceContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="ComplaintTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ComplaintContent" Type="nvarchar(max)" />
+    <Property Name="ProcessStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillID" />
+    </Key>
+    <Property Name="SkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillTypeID" Type="int" Nullable="false" />
+    <Property Name="SkillName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SkillType">
+    <Key>
+      <PropertyRef Name="SkillTypeID" />
+    </Key>
+    <Property Name="SkillTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StatusChangeReason">
+    <Key>
+      <PropertyRef Name="StatusChangeReasonID" />
+    </Key>
+    <Property Name="StatusChangeReasonID" Type="int" Nullable="false" />
+    <Property Name="StatusChangeReason" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaskKeywordList">
+    <Key>
+      <PropertyRef Name="TaskKeywordListID" />
+    </Key>
+    <Property Name="TaskKeywordListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseID" Type="int" />
+    <Property Name="KeywordID" Type="int" />
+  </EntityType>
+  <EntityType Name="TaskList">
+    <Key>
+      <PropertyRef Name="CaseID" />
+    </Key>
+    <Property Name="CaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="TaskNameID" Type="int" />
+    <Property Name="TaskTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskDetail" Type="nvarchar(max)" />
+    <Property Name="TeachToID" Type="int" />
+    <Property Name="WorkingHoursID" Type="int" />
+    <Property Name="PayFrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalaryID" Type="int" />
+    <Property Name="TaskPlace" Type="int" />
+    <Property Name="TownID" Type="int" />
+    <Property Name="WorkPlace" Type="bit" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="RequiredNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskPeriod" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskStart" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaskEnd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Requirement" Type="nvarchar" MaxLength="50" />
+    <Property Name="HumanList" Type="nvarchar" MaxLength="50" />
+    <Property Name="LanguageRequired" Type="nvarchar" MaxLength="50" />
+    <Property Name="SkillRequiredID" Type="nvarchar" MaxLength="50" />
+    <Property Name="CertificateRequiredID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ServiceStatus" Type="bit" />
+    <Property Name="StatusChangeReasonID" Type="int" />
+    <Property Name="PublishOrNot" Type="nvarchar" MaxLength="50" />
+    <Property Name="PublishStart" Type="nvarchar" MaxLength="50" />
+    <Property Name="PublishEnd" Type="nvarchar" MaxLength="50" />
+    <Property Name="CaseStatusID" Type="int" />
+    <Property Name="OnTop" Type="int" />
+    <Property Name="DataCreateDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataModifyDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataModifyPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsExpert" Type="bit" />
+  </EntityType>
+  <EntityType Name="TaskNameList">
+    <Key>
+      <PropertyRef Name="TaskNameID" />
+    </Key>
+    <Property Name="TaskNameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TaskPhoto">
+    <Key>
+      <PropertyRef Name="TaskPhotoID" />
+    </Key>
+    <Property Name="TaskPhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseID" Type="int" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TeachToList">
+    <Key>
+      <PropertyRef Name="TeachToID" />
+    </Key>
+    <Property Name="TeachToID" Type="int" Nullable="false" />
+    <Property Name="TeachTo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="TownID" />
+    </Key>
+    <Property Name="TownID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="Town" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PostalCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkingTime">
+    <Key>
+      <PropertyRef Name="WorkingHoursID" />
+    </Key>
+    <Property Name="WorkingHoursID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkingDateFrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkingDateTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkingHoursFrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkingHoursTo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_ApplicationList_CaseStatusList">
+    <End Role="CaseStatusList" Type="Self.CaseStatusList" Multiplicity="0..1" />
+    <End Role="ApplicationList" Type="Self.ApplicationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CaseStatusList">
+        <PropertyRef Name="CaseStatusID" />
+      </Principal>
+      <Dependent Role="ApplicationList">
+        <PropertyRef Name="CaseStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationList_Rating">
+    <End Role="Rating" Type="Self.Rating" Multiplicity="0..1" />
+    <End Role="ApplicationList" Type="Self.ApplicationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rating">
+        <PropertyRef Name="RatingID" />
+      </Principal>
+      <Dependent Role="ApplicationList">
+        <PropertyRef Name="RatingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationList_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+    <End Role="ApplicationList" Type="Self.ApplicationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ApplicationList">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationList_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="ApplicationList" Type="Self.ApplicationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="ApplicationList">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseSkill_Skill">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="0..1" />
+    <End Role="CaseSkill" Type="Self.CaseSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillID" />
+      </Principal>
+      <Dependent Role="CaseSkill">
+        <PropertyRef Name="SkillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaseSkill_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="CaseSkill" Type="Self.CaseSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="CaseSkill">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Certificate_CertificateType">
+    <End Role="CertificateType" Type="Self.CertificateType" Multiplicity="1" />
+    <End Role="Certificate" Type="Self.Certificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CertificateType">
+        <PropertyRef Name="CertificateTypeID" />
+      </Principal>
+      <Dependent Role="Certificate">
+        <PropertyRef Name="CertificateTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatBlockList_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatBlockList" Type="Self.ChatBlockList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatBlockList">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatBlockList_MemberAccountBlocked">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatBlockList" Type="Self.ChatBlockList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatBlockList">
+        <PropertyRef Name="BlockedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_MemberAccountReceiver">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="ReceiverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_MemberAccountSender">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="SenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckIn_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="CheckIn" Type="Self.CheckIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="CheckIn">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertApplication_CaseStatusList">
+    <End Role="CaseStatusList" Type="Self.CaseStatusList" Multiplicity="0..1" />
+    <End Role="ExpertApplication" Type="Self.ExpertApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CaseStatusList">
+        <PropertyRef Name="CaseStatusID" />
+      </Principal>
+      <Dependent Role="ExpertApplication">
+        <PropertyRef Name="CaseStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertApplication_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="0..1" />
+    <End Role="ExpertApplication" Type="Self.ExpertApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ExpertApplication">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertApplication_Rating">
+    <End Role="Rating" Type="Self.Rating" Multiplicity="0..1" />
+    <End Role="ExpertApplication" Type="Self.ExpertApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rating">
+        <PropertyRef Name="RatingID" />
+      </Principal>
+      <Dependent Role="ExpertApplication">
+        <PropertyRef Name="RatingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertApplication_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="ExpertApplication" Type="Self.ExpertApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="ExpertApplication">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertResume_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="1" />
+    <End Role="ExpertResume" Type="Self.ExpertResume" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ExpertResume">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertWorkList_ExpertResume">
+    <End Role="ExpertResume" Type="Self.ExpertResume" Multiplicity="0..1" />
+    <End Role="ExpertWorkList" Type="Self.ExpertWorkList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpertResume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ExpertWorkList">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpertWorkList_ExpertWorks">
+    <End Role="ExpertWorks" Type="Self.ExpertWorks" Multiplicity="0..1" />
+    <End Role="ExpertWorkList" Type="Self.ExpertWorkList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpertWorks">
+        <PropertyRef Name="WorksID" />
+      </Principal>
+      <Dependent Role="ExpertWorkList">
+        <PropertyRef Name="WorksID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForgetPassword_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ForgetPassword" Type="Self.ForgetPassword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ForgetPassword">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_forumPost_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="0..1" />
+    <End Role="ForumPost1" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPost1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPost_ForumStatus">
+    <End Role="ForumStatus" Type="Self.ForumStatus" Multiplicity="1" />
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ForumPost">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPost_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ForumPost">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostCategory_ForumCategory">
+    <End Role="ForumCategory" Type="Self.ForumCategory" Multiplicity="1" />
+    <End Role="ForumPostCategory" Type="Self.ForumPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumCategory">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="ForumPostCategory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostCategory_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="1" />
+    <End Role="ForumPostCategory" Type="Self.ForumPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPostCategory">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_forumPost">
+    <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_ForumPostComment">
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="0..1" />
+    <End Role="ForumPostComment1" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumPostComment">
+        <PropertyRef Name="PostCommentID" />
+      </Principal>
+      <Dependent Role="ForumPostComment1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_ForumStatus">
+    <End Role="ForumStatus" Type="Self.ForumStatus" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumPostComment_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ForumPostComment" Type="Self.ForumPostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ForumPostComment">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginHistory_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="LoginHistory" Type="Self.LoginHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="LoginHistory">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberCollection_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="MemberCollection" Type="Self.MemberCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="MemberCollection">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberCollection_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+    <End Role="MemberCollection" Type="Self.MemberCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="MemberCollection">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberCollection_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="MemberCollection" Type="Self.MemberCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="MemberCollection">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberRoleConn_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="MemberRoleConn" Type="Self.MemberRoleConn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="MemberRoleConn">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberRoleConn_RoleInfo">
+    <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1" />
+    <End Role="MemberRoleConn" Type="Self.MemberRoleConn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInfo">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="MemberRoleConn">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberStatusList_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="MemberStatusList" Type="Self.MemberStatusList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="MemberStatusList">
+        <PropertyRef Name="UpdateUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberStatusList_StatusChangeReason">
+    <End Role="StatusChangeReason" Type="Self.StatusChangeReason" Multiplicity="1" />
+    <End Role="MemberStatusList" Type="Self.MemberStatusList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusChangeReason">
+        <PropertyRef Name="StatusChangeReasonID" />
+      </Principal>
+      <Dependent Role="MemberStatusList">
+        <PropertyRef Name="StatusChangeReasonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_PayWay">
+    <End Role="PayWay" Type="Self.PayWay" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayWay">
+        <PropertyRef Name="PayWayID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PayWayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_TradeType">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPhoto_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductPhoto" Type="Self.ProductPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductPhoto">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="Resume" Type="Self.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_TaskNameList">
+    <End Role="TaskNameList" Type="Self.TaskNameList" Multiplicity="0..1" />
+    <End Role="Resume" Type="Self.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskNameList">
+        <PropertyRef Name="TaskNameID" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="TaskNameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_Town">
+    <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
+    <End Role="Resume" Type="Self.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="TownID" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="TownID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_WorkingTime">
+    <End Role="WorkingTime" Type="Self.WorkingTime" Multiplicity="0..1" />
+    <End Role="Resume" Type="Self.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkingTime">
+        <PropertyRef Name="WorkingHoursID" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="WorkingHoursID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeApplication_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+    <End Role="ResumeApplication" Type="Self.ResumeApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ResumeApplication">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeCertificate_Certificate">
+    <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
+    <End Role="ResumeCertificate" Type="Self.ResumeCertificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certificate">
+        <PropertyRef Name="CertificateID" />
+      </Principal>
+      <Dependent Role="ResumeCertificate">
+        <PropertyRef Name="CertificateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeCertificate_Resume1">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="1" />
+    <End Role="ResumeCertificate" Type="Self.ResumeCertificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ResumeCertificate">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeKeywordList_Keyword">
+    <End Role="Keyword" Type="Self.Keyword" Multiplicity="0..1" />
+    <End Role="ResumeKeywordList" Type="Self.ResumeKeywordList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Keyword">
+        <PropertyRef Name="KeywordID" />
+      </Principal>
+      <Dependent Role="ResumeKeywordList">
+        <PropertyRef Name="KeywordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeKeywordList_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="0..1" />
+    <End Role="ResumeKeywordList" Type="Self.ResumeKeywordList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ResumeKeywordList">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeSkill_Resume">
+    <End Role="Resume" Type="Self.Resume" Multiplicity="1" />
+    <End Role="ResumeSkill" Type="Self.ResumeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resume">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ResumeSkill">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeSkill_Skill">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="ResumeSkill" Type="Self.ResumeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillID" />
+      </Principal>
+      <Dependent Role="ResumeSkill">
+        <PropertyRef Name="SkillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceContact_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="ServiceContact" Type="Self.ServiceContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="ServiceContact">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_SkillType">
+    <End Role="SkillType" Type="Self.SkillType" Multiplicity="1" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillType">
+        <PropertyRef Name="SkillTypeID" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="SkillTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskKeywordList_Keyword">
+    <End Role="Keyword" Type="Self.Keyword" Multiplicity="0..1" />
+    <End Role="TaskKeywordList" Type="Self.TaskKeywordList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Keyword">
+        <PropertyRef Name="KeywordID" />
+      </Principal>
+      <Dependent Role="TaskKeywordList">
+        <PropertyRef Name="KeywordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskKeywordList_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="0..1" />
+    <End Role="TaskKeywordList" Type="Self.TaskKeywordList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="TaskKeywordList">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskPhoto_TaskList">
+    <End Role="TaskList" Type="Self.TaskList" Multiplicity="1" />
+    <End Role="TaskPhoto" Type="Self.TaskPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskList">
+        <PropertyRef Name="CaseID" />
+      </Principal>
+      <Dependent Role="TaskPhoto">
+        <PropertyRef Name="CaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Town_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Town" Type="Self.Town" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Town">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="NewIspanProjectModelStoreContainer">
+    <EntitySet Name="ApplicationList" EntityType="Self.ApplicationList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseSkill" EntityType="Self.CaseSkill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseStatusList" EntityType="Self.CaseStatusList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CertificateType" EntityType="Self.CertificateType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChatBlockList" EntityType="Self.ChatBlockList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CheckIn" EntityType="Self.CheckIn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpertApplication" EntityType="Self.ExpertApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpertResume" EntityType="Self.ExpertResume" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpertWorkList" EntityType="Self.ExpertWorkList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpertWorks" EntityType="Self.ExpertWorks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForgetPassword" EntityType="Self.ForgetPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumCategory" EntityType="Self.ForumCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumPost" EntityType="Self.ForumPost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumPostCategory" EntityType="Self.ForumPostCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumPostComment" EntityType="Self.ForumPostComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumStatus" EntityType="Self.ForumStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Keyword" EntityType="Self.Keyword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberCollection" EntityType="Self.MemberCollection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberRoleConn" EntityType="Self.MemberRoleConn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberStatusList" EntityType="Self.MemberStatusList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayWay" EntityType="Self.PayWay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductPhoto" EntityType="Self.ProductPhoto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Resume" EntityType="Self.Resume" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResumeApplication" EntityType="Self.ResumeApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResumeCertificate" EntityType="Self.ResumeCertificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResumeKeywordList" EntityType="Self.ResumeKeywordList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResumeSkill" EntityType="Self.ResumeSkill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceContact" EntityType="Self.ServiceContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SkillType" EntityType="Self.SkillType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusChangeReason" EntityType="Self.StatusChangeReason" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskKeywordList" EntityType="Self.TaskKeywordList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskList" EntityType="Self.TaskList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskNameList" EntityType="Self.TaskNameList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskPhoto" EntityType="Self.TaskPhoto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeachToList" EntityType="Self.TeachToList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkingTime" EntityType="Self.WorkingTime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ChatMessage].[ChatMessageID] AS [ChatMessageID], 
+    [ChatMessage].[SenderID] AS [SenderID], 
+    [ChatMessage].[ReceiverID] AS [ReceiverID], 
+    [ChatMessage].[Message] AS [Message], 
+    [ChatMessage].[Created] AS [Created]
+    FROM [dbo].[ChatMessage] AS [ChatMessage]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HumanList" EntityType="Self.HumanList" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HumanList].[CaseID] AS [CaseID], 
+    [HumanList].[HumanListID] AS [HumanListID], 
+    [HumanList].[CaseStatusID] AS [CaseStatusID], 
+    [HumanList].[ApplicantID] AS [ApplicantID], 
+    [HumanList].[SenderID] AS [SenderID]
+    FROM [dbo].[HumanList] AS [HumanList]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ApplicationList_CaseStatusList" Association="Self.FK_ApplicationList_CaseStatusList">
+      <End Role="CaseStatusList" EntitySet="CaseStatusList" />
+      <End Role="ApplicationList" EntitySet="ApplicationList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationList_Rating" Association="Self.FK_ApplicationList_Rating">
+      <End Role="Rating" EntitySet="Rating" />
+      <End Role="ApplicationList" EntitySet="ApplicationList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationList_Resume" Association="Self.FK_ApplicationList_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ApplicationList" EntitySet="ApplicationList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationList_TaskList" Association="Self.FK_ApplicationList_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="ApplicationList" EntitySet="ApplicationList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseSkill_Skill" Association="Self.FK_CaseSkill_Skill">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="CaseSkill" EntitySet="CaseSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaseSkill_TaskList" Association="Self.FK_CaseSkill_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="CaseSkill" EntitySet="CaseSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Certificate_CertificateType" Association="Self.FK_Certificate_CertificateType">
+      <End Role="CertificateType" EntitySet="CertificateType" />
+      <End Role="Certificate" EntitySet="Certificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatBlockList_MemberAccount" Association="Self.FK_ChatBlockList_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatBlockList" EntitySet="ChatBlockList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatBlockList_MemberAccountBlocked" Association="Self.FK_ChatBlockList_MemberAccountBlocked">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatBlockList" EntitySet="ChatBlockList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_MemberAccountReceiver" Association="Self.FK_ChatMessage_MemberAccountReceiver">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatMessage" EntitySet="ChatMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_MemberAccountSender" Association="Self.FK_ChatMessage_MemberAccountSender">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ChatMessage" EntitySet="ChatMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckIn_MemberAccount" Association="Self.FK_CheckIn_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="CheckIn" EntitySet="CheckIn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertApplication_CaseStatusList" Association="Self.FK_ExpertApplication_CaseStatusList">
+      <End Role="CaseStatusList" EntitySet="CaseStatusList" />
+      <End Role="ExpertApplication" EntitySet="ExpertApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertApplication_MemberAccount" Association="Self.FK_ExpertApplication_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ExpertApplication" EntitySet="ExpertApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertApplication_Rating" Association="Self.FK_ExpertApplication_Rating">
+      <End Role="Rating" EntitySet="Rating" />
+      <End Role="ExpertApplication" EntitySet="ExpertApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertApplication_TaskList" Association="Self.FK_ExpertApplication_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="ExpertApplication" EntitySet="ExpertApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertResume_Resume" Association="Self.FK_ExpertResume_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ExpertResume" EntitySet="ExpertResume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertWorkList_ExpertResume" Association="Self.FK_ExpertWorkList_ExpertResume">
+      <End Role="ExpertResume" EntitySet="ExpertResume" />
+      <End Role="ExpertWorkList" EntitySet="ExpertWorkList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpertWorkList_ExpertWorks" Association="Self.FK_ExpertWorkList_ExpertWorks">
+      <End Role="ExpertWorks" EntitySet="ExpertWorks" />
+      <End Role="ExpertWorkList" EntitySet="ExpertWorkList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForgetPassword_MemberAccount" Association="Self.FK_ForgetPassword_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ForgetPassword" EntitySet="ForgetPassword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_forumPost_forumPost" Association="Self.FK_forumPost_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPost1" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPost_ForumStatus" Association="Self.FK_ForumPost_ForumStatus">
+      <End Role="ForumStatus" EntitySet="ForumStatus" />
+      <End Role="ForumPost" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPost_MemberAccount" Association="Self.FK_ForumPost_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ForumPost" EntitySet="ForumPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostCategory_ForumCategory" Association="Self.FK_ForumPostCategory_ForumCategory">
+      <End Role="ForumCategory" EntitySet="ForumCategory" />
+      <End Role="ForumPostCategory" EntitySet="ForumPostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostCategory_forumPost" Association="Self.FK_ForumPostCategory_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPostCategory" EntitySet="ForumPostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_forumPost" Association="Self.FK_ForumPostComment_forumPost">
+      <End Role="ForumPost" EntitySet="ForumPost" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_ForumPostComment" Association="Self.FK_ForumPostComment_ForumPostComment">
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+      <End Role="ForumPostComment1" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_ForumStatus" Association="Self.FK_ForumPostComment_ForumStatus">
+      <End Role="ForumStatus" EntitySet="ForumStatus" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumPostComment_MemberAccount" Association="Self.FK_ForumPostComment_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ForumPostComment" EntitySet="ForumPostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginHistory_MemberAccount" Association="Self.FK_LoginHistory_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="LoginHistory" EntitySet="LoginHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberCollection_MemberAccount" Association="Self.FK_MemberCollection_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberCollection" EntitySet="MemberCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberCollection_Resume" Association="Self.FK_MemberCollection_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="MemberCollection" EntitySet="MemberCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberCollection_TaskList" Association="Self.FK_MemberCollection_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="MemberCollection" EntitySet="MemberCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberRoleConn_MemberAccount" Association="Self.FK_MemberRoleConn_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberRoleConn" EntitySet="MemberRoleConn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberRoleConn_RoleInfo" Association="Self.FK_MemberRoleConn_RoleInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+      <End Role="MemberRoleConn" EntitySet="MemberRoleConn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberStatusList_MemberAccount" Association="Self.FK_MemberStatusList_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberStatusList" EntitySet="MemberStatusList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberStatusList_StatusChangeReason" Association="Self.FK_MemberStatusList_StatusChangeReason">
+      <End Role="StatusChangeReason" EntitySet="StatusChangeReason" />
+      <End Role="MemberStatusList" EntitySet="MemberStatusList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_MemberAccount" Association="Self.FK_Order_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_PayWay" Association="Self.FK_Order_PayWay">
+      <End Role="PayWay" EntitySet="PayWay" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_TradeType" Association="Self.FK_Order_TradeType">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Resume" Association="Self.FK_OrderDetail_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_TaskList" Association="Self.FK_OrderDetail_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPhoto_Product" Association="Self.FK_ProductPhoto_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductPhoto" EntitySet="ProductPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_MemberAccount" Association="Self.FK_Resume_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_TaskNameList" Association="Self.FK_Resume_TaskNameList">
+      <End Role="TaskNameList" EntitySet="TaskNameList" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_Town" Association="Self.FK_Resume_Town">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_WorkingTime" Association="Self.FK_Resume_WorkingTime">
+      <End Role="WorkingTime" EntitySet="WorkingTime" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeApplication_Resume" Association="Self.FK_ResumeApplication_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ResumeApplication" EntitySet="ResumeApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeCertificate_Certificate" Association="Self.FK_ResumeCertificate_Certificate">
+      <End Role="Certificate" EntitySet="Certificate" />
+      <End Role="ResumeCertificate" EntitySet="ResumeCertificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeCertificate_Resume1" Association="Self.FK_ResumeCertificate_Resume1">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ResumeCertificate" EntitySet="ResumeCertificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeKeywordList_Keyword" Association="Self.FK_ResumeKeywordList_Keyword">
+      <End Role="Keyword" EntitySet="Keyword" />
+      <End Role="ResumeKeywordList" EntitySet="ResumeKeywordList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeKeywordList_Resume" Association="Self.FK_ResumeKeywordList_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ResumeKeywordList" EntitySet="ResumeKeywordList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeSkill_Resume" Association="Self.FK_ResumeSkill_Resume">
+      <End Role="Resume" EntitySet="Resume" />
+      <End Role="ResumeSkill" EntitySet="ResumeSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeSkill_Skill" Association="Self.FK_ResumeSkill_Skill">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="ResumeSkill" EntitySet="ResumeSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceContact_MemberAccount" Association="Self.FK_ServiceContact_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="ServiceContact" EntitySet="ServiceContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_SkillType" Association="Self.FK_Skill_SkillType">
+      <End Role="SkillType" EntitySet="SkillType" />
+      <End Role="Skill" EntitySet="Skill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskKeywordList_Keyword" Association="Self.FK_TaskKeywordList_Keyword">
+      <End Role="Keyword" EntitySet="Keyword" />
+      <End Role="TaskKeywordList" EntitySet="TaskKeywordList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskKeywordList_TaskList" Association="Self.FK_TaskKeywordList_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="TaskKeywordList" EntitySet="TaskKeywordList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskPhoto_TaskList" Association="Self.FK_TaskPhoto_TaskList">
+      <End Role="TaskList" EntitySet="TaskList" />
+      <End Role="TaskPhoto" EntitySet="TaskPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Town_City" Association="Self.FK_Town_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Town" EntitySet="Town" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

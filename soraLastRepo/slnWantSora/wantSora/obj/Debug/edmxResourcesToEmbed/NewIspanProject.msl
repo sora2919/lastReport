@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NewIspanProjectModelStoreContainer" CdmEntityContainer="NewIspanProjectEntities">
+    <EntitySetMapping Name="ApplicationList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ApplicationList">
+        <MappingFragment StoreEntitySet="ApplicationList">
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="ApplicationListID" ColumnName="ApplicationListID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+          <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CaseSkill">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.CaseSkill">
+        <MappingFragment StoreEntitySet="CaseSkill">
+          <ScalarProperty Name="CaseSkillID" ColumnName="CaseSkillID" />
+          <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CaseStatusList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.CaseStatusList">
+        <MappingFragment StoreEntitySet="CaseStatusList">
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+          <ScalarProperty Name="CaseStatus" ColumnName="CaseStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Certificate">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Certificate">
+        <MappingFragment StoreEntitySet="Certificate">
+          <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+          <ScalarProperty Name="CertificateTypeID" ColumnName="CertificateTypeID" />
+          <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CertificateType">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.CertificateType">
+        <MappingFragment StoreEntitySet="CertificateType">
+          <ScalarProperty Name="CertificateTypeID" ColumnName="CertificateTypeID" />
+          <ScalarProperty Name="CertificateTypeName" ColumnName="CertificateTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChatBlockList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ChatBlockList">
+        <MappingFragment StoreEntitySet="ChatBlockList">
+          <ScalarProperty Name="ChatBlockListID" ColumnName="ChatBlockListID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BlockedID" ColumnName="BlockedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckIn">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.CheckIn">
+        <MappingFragment StoreEntitySet="CheckIn">
+          <ScalarProperty Name="CheckID" ColumnName="CheckID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="CheckDate" ColumnName="CheckDate" />
+          <ScalarProperty Name="CheckPoint" ColumnName="CheckPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="City1" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpertApplication">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ExpertApplication">
+        <MappingFragment StoreEntitySet="ExpertApplication">
+          <ScalarProperty Name="ApplicationListID" ColumnName="ApplicationListID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+          <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpertResume">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ExpertResume">
+        <MappingFragment StoreEntitySet="ExpertResume">
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+          <ScalarProperty Name="WorksUrl" ColumnName="WorksUrl" />
+          <ScalarProperty Name="ContactMethod" ColumnName="ContactMethod" />
+          <ScalarProperty Name="ServiceMethod" ColumnName="ServiceMethod" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="Problem" ColumnName="Problem" />
+          <ScalarProperty Name="CommonPrice" ColumnName="CommonPrice" />
+          <ScalarProperty Name="HistoricalViews" ColumnName="HistoricalViews" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpertWorkList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ExpertWorkList">
+        <MappingFragment StoreEntitySet="ExpertWorkList">
+          <ScalarProperty Name="WorksListID" ColumnName="WorksListID" />
+          <ScalarProperty Name="WorksID" ColumnName="WorksID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpertWorks">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ExpertWorks">
+        <MappingFragment StoreEntitySet="ExpertWorks">
+          <ScalarProperty Name="WorksID" ColumnName="WorksID" />
+          <ScalarProperty Name="WorksPhoto" ColumnName="WorksPhoto" />
+          <ScalarProperty Name="DataCreateDate" ColumnName="DataCreateDate" />
+          <ScalarProperty Name="Workname" ColumnName="Workname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForgetPassword">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForgetPassword">
+        <MappingFragment StoreEntitySet="ForgetPassword">
+          <ScalarProperty Name="ForgetID" ColumnName="ForgetID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="TemporaryPassword" ColumnName="TemporaryPassword" />
+          <ScalarProperty Name="ForgetCountInAWeek" ColumnName="ForgetCountInAWeek" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumCategory">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForumCategory">
+        <MappingFragment StoreEntitySet="ForumCategory">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Depiction" ColumnName="Depiction" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumPost">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForumPost">
+        <MappingFragment StoreEntitySet="ForumPost">
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Updated" ColumnName="Updated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumPostCategory">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForumPostCategory">
+        <MappingFragment StoreEntitySet="ForumPostCategory">
+          <ScalarProperty Name="PostCategoryID" ColumnName="PostCategoryID" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumPostComment">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForumPostComment">
+        <MappingFragment StoreEntitySet="ForumPostComment">
+          <ScalarProperty Name="PostCommentID" ColumnName="PostCommentID" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Updated" ColumnName="Updated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumStatus">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ForumStatus">
+        <MappingFragment StoreEntitySet="ForumStatus">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Keyword">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Keyword">
+        <MappingFragment StoreEntitySet="Keyword">
+          <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+          <ScalarProperty Name="KeywordContent" ColumnName="KeywordContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginHistory">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.LoginHistory">
+        <MappingFragment StoreEntitySet="LoginHistory">
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="LoginS_F" ColumnName="LoginS/F" />
+          <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+          <ScalarProperty Name="PasswordFailCount" ColumnName="PasswordFailCount" />
+          <ScalarProperty Name="MemberInfoFinished" ColumnName="MemberInfoFinished" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberAccount">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.MemberAccount">
+        <MappingFragment StoreEntitySet="MemberAccount">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="MemberTotalPoint" ColumnName="MemberTotalPoint" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="BitrhDay" ColumnName="BitrhDay" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="MemberPhoto" ColumnName="MemberPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberCollection">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.MemberCollection">
+        <MappingFragment StoreEntitySet="MemberCollection">
+          <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberRoleConn">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.MemberRoleConn">
+        <MappingFragment StoreEntitySet="MemberRoleConn">
+          <ScalarProperty Name="MemberRoleID" ColumnName="MemberRoleID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberStatusList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.MemberStatusList">
+        <MappingFragment StoreEntitySet="MemberStatusList">
+          <ScalarProperty Name="StatusChangeID" ColumnName="StatusChangeID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="StatusChangeReasonID" ColumnName="StatusChangeReasonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="PayWayID" ColumnName="PayWayID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+          <ScalarProperty Name="OrderPoint" ColumnName="OrderPoint" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="OrderGetPoint" ColumnName="OrderGetPoint" />
+          <ScalarProperty Name="OrderUsePoint" ColumnName="OrderUsePoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetail">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="OrderdetailID" ColumnName="OrderdetailID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="TopDate" ColumnName="TopDate" />
+          <ScalarProperty Name="TopType" ColumnName="TopType" />
+          <ScalarProperty Name="UnitPoint" ColumnName="UnitPoint" />
+          <ScalarProperty Name="GetPoint" ColumnName="GetPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayWay">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.PayWay">
+        <MappingFragment StoreEntitySet="PayWay">
+          <ScalarProperty Name="PayWayID" ColumnName="PayWayID" />
+          <ScalarProperty Name="PayWayName" ColumnName="PayWayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="CoverPhoto" ColumnName="CoverPhoto" />
+          <ScalarProperty Name="ProductDesc" ColumnName="ProductDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PostStartDate" ColumnName="PostStartDate" />
+          <ScalarProperty Name="PostEndDate" ColumnName="PostEndDate" />
+          <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+          <ScalarProperty Name="TopDate" ColumnName="TopDate" />
+          <ScalarProperty Name="TopType" ColumnName="TopType" />
+          <ScalarProperty Name="UnitPoint" ColumnName="UnitPoint" />
+          <ScalarProperty Name="GetPoint" ColumnName="GetPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPhoto">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ProductPhoto">
+        <MappingFragment StoreEntitySet="ProductPhoto">
+          <ScalarProperty Name="ProductPhotoID" ColumnName="ProductPhotoID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductPhotoName" ColumnName="ProductPhotoName" />
+          <ScalarProperty Name="ProductPhoto1" ColumnName="ProductPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rating">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+          <ScalarProperty Name="RatingStar" ColumnName="RatingStar" />
+          <ScalarProperty Name="RatingContent" ColumnName="RatingContent" />
+          <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+          <ScalarProperty Name="SourceRoleID" ColumnName="SourceRoleID" />
+          <ScalarProperty Name="SourceAccountID" ColumnName="SourceAccountID" />
+          <ScalarProperty Name="TargetRoleID" ColumnName="TargetRoleID" />
+          <ScalarProperty Name="TargetAccountID" ColumnName="TargetAccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resume">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Resume">
+        <MappingFragment StoreEntitySet="Resume">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Autobiography" ColumnName="Autobiography" />
+          <ScalarProperty Name="WorkingHoursID" ColumnName="WorkingHoursID" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="OnTop" ColumnName="OnTop" />
+          <ScalarProperty Name="TaskNameID" ColumnName="TaskNameID" />
+          <ScalarProperty Name="IsExpertOrNot" ColumnName="IsExpertOrNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResumeApplication">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ResumeApplication">
+        <MappingFragment StoreEntitySet="ResumeApplication">
+          <ScalarProperty Name="ResumeApplicationID" ColumnName="ResumeApplicationID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResumeCertificate">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ResumeCertificate">
+        <MappingFragment StoreEntitySet="ResumeCertificate">
+          <ScalarProperty Name="ResumeCertificateID" ColumnName="ResumeCertificateID" />
+          <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResumeKeywordList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ResumeKeywordList">
+        <MappingFragment StoreEntitySet="ResumeKeywordList">
+          <ScalarProperty Name="ResumeKeywordListID" ColumnName="ResumeKeywordListID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResumeSkill">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ResumeSkill">
+        <MappingFragment StoreEntitySet="ResumeSkill">
+          <ScalarProperty Name="ResumeSkillID" ColumnName="ResumeSkillID" />
+          <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleInfo">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.RoleInfo">
+        <MappingFragment StoreEntitySet="RoleInfo">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salary">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Salary">
+        <MappingFragment StoreEntitySet="Salary">
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceContact">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ServiceContact">
+        <MappingFragment StoreEntitySet="ServiceContact">
+          <ScalarProperty Name="ServiceContactID" ColumnName="ServiceContactID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ComplaintTitle" ColumnName="ComplaintTitle" />
+          <ScalarProperty Name="ComplaintContent" ColumnName="ComplaintContent" />
+          <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skill">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Skill">
+        <MappingFragment StoreEntitySet="Skill">
+          <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+          <ScalarProperty Name="SkillTypeID" ColumnName="SkillTypeID" />
+          <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SkillType">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.SkillType">
+        <MappingFragment StoreEntitySet="SkillType">
+          <ScalarProperty Name="SkillTypeID" ColumnName="SkillTypeID" />
+          <ScalarProperty Name="SkillTypeName" ColumnName="SkillTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusChangeReason">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.StatusChangeReason">
+        <MappingFragment StoreEntitySet="StatusChangeReason">
+          <ScalarProperty Name="StatusChangeReasonID" ColumnName="StatusChangeReasonID" />
+          <ScalarProperty Name="StatusChangeReason1" ColumnName="StatusChangeReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskKeywordList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.TaskKeywordList">
+        <MappingFragment StoreEntitySet="TaskKeywordList">
+          <ScalarProperty Name="TaskKeywordListID" ColumnName="TaskKeywordListID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.TaskList">
+        <MappingFragment StoreEntitySet="TaskList">
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="TaskNameID" ColumnName="TaskNameID" />
+          <ScalarProperty Name="TaskTitle" ColumnName="TaskTitle" />
+          <ScalarProperty Name="TaskDetail" ColumnName="TaskDetail" />
+          <ScalarProperty Name="TeachToID" ColumnName="TeachToID" />
+          <ScalarProperty Name="WorkingHoursID" ColumnName="WorkingHoursID" />
+          <ScalarProperty Name="PayFrom" ColumnName="PayFrom" />
+          <ScalarProperty Name="PayTo" ColumnName="PayTo" />
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="TaskPlace" ColumnName="TaskPlace" />
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="RequiredNum" ColumnName="RequiredNum" />
+          <ScalarProperty Name="TaskPeriod" ColumnName="TaskPeriod" />
+          <ScalarProperty Name="TaskStart" ColumnName="TaskStart" />
+          <ScalarProperty Name="TaskEnd" ColumnName="TaskEnd" />
+          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+          <ScalarProperty Name="HumanList" ColumnName="HumanList" />
+          <ScalarProperty Name="LanguageRequired" ColumnName="LanguageRequired" />
+          <ScalarProperty Name="SkillRequiredID" ColumnName="SkillRequiredID" />
+          <ScalarProperty Name="CertificateRequiredID" ColumnName="CertificateRequiredID" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="StatusChangeReasonID" ColumnName="StatusChangeReasonID" />
+          <ScalarProperty Name="PublishOrNot" ColumnName="PublishOrNot" />
+          <ScalarProperty Name="PublishStart" ColumnName="PublishStart" />
+          <ScalarProperty Name="PublishEnd" ColumnName="PublishEnd" />
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+          <ScalarProperty Name="OnTop" ColumnName="OnTop" />
+          <ScalarProperty Name="DataCreateDate" ColumnName="DataCreateDate" />
+          <ScalarProperty Name="DataModifyDate" ColumnName="DataModifyDate" />
+          <ScalarProperty Name="DataModifyPerson" ColumnName="DataModifyPerson" />
+          <ScalarProperty Name="IsExpert" ColumnName="IsExpert" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskNameList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.TaskNameList">
+        <MappingFragment StoreEntitySet="TaskNameList">
+          <ScalarProperty Name="TaskNameID" ColumnName="TaskNameID" />
+          <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskPhoto">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.TaskPhoto">
+        <MappingFragment StoreEntitySet="TaskPhoto">
+          <ScalarProperty Name="TaskPhotoID" ColumnName="TaskPhotoID" />
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeachToList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.TeachToList">
+        <MappingFragment StoreEntitySet="TeachToList">
+          <ScalarProperty Name="TeachToID" ColumnName="TeachToID" />
+          <ScalarProperty Name="TeachTo" ColumnName="TeachTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Town">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.Town">
+        <MappingFragment StoreEntitySet="Town">
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="Town1" ColumnName="Town" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkingTime">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.WorkingTime">
+        <MappingFragment StoreEntitySet="WorkingTime">
+          <ScalarProperty Name="WorkingHoursID" ColumnName="WorkingHoursID" />
+          <ScalarProperty Name="WorkingDateFrom" ColumnName="WorkingDateFrom" />
+          <ScalarProperty Name="WorkingDateTo" ColumnName="WorkingDateTo" />
+          <ScalarProperty Name="WorkingHoursFrom" ColumnName="WorkingHoursFrom" />
+          <ScalarProperty Name="WorkingHoursTo" ColumnName="WorkingHoursTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChatMessage">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ChatMessage">
+        <MappingFragment StoreEntitySet="ChatMessage">
+          <ScalarProperty Name="ChatMessageID" ColumnName="ChatMessageID" />
+          <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+          <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HumanList">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.HumanList">
+        <MappingFragment StoreEntitySet="HumanList">
+          <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+          <ScalarProperty Name="HumanListID" ColumnName="HumanListID" />
+          <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
+          <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+          <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="NewIspanProjectModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="NewIspanProjectModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="NewIspanProjectModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="NewIspanProjectModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NewIspanProjectModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="NewIspanProjectModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NewIspanProjectModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="NewIspanProjectModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="NewIspanProjectModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
