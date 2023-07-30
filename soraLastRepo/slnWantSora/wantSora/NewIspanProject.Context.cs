@@ -34,6 +34,7 @@ namespace wantSora
         public virtual DbSet<Certificate> Certificate { get; set; }
         public virtual DbSet<CertificateType> CertificateType { get; set; }
         public virtual DbSet<ChatBlockList> ChatBlockList { get; set; }
+        public virtual DbSet<ChatMessage> ChatMessage { get; set; }
         public virtual DbSet<CheckIn> CheckIn { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<ExpertApplication> ExpertApplication { get; set; }
@@ -77,7 +78,6 @@ namespace wantSora
         public virtual DbSet<TeachToList> TeachToList { get; set; }
         public virtual DbSet<Town> Town { get; set; }
         public virtual DbSet<WorkingTime> WorkingTime { get; set; }
-        public virtual DbSet<ChatMessage> ChatMessage { get; set; }
         public virtual DbSet<HumanList> HumanList { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

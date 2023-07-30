@@ -60,15 +60,9 @@
           <Property Name="AccountID" Type="int" Nullable="false" />
           <Property Name="BlockedID" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'NewIspanProject.dbo.ChatMessage' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="ChatMessage">
           <Key>
             <PropertyRef Name="ChatMessageID" />
-            <PropertyRef Name="SenderID" />
-            <PropertyRef Name="ReceiverID" />
-            <PropertyRef Name="Message" />
-            <PropertyRef Name="Created" />
           </Key>
           <Property Name="ChatMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SenderID" Type="int" Nullable="false" />
@@ -101,6 +95,7 @@
           <Property Name="AccountID" Type="int" />
           <Property Name="CaseStatusID" Type="int" />
           <Property Name="RatingID" Type="int" />
+          <Property Name="ExpertAccountID" Type="int" />
         </EntityType>
         <EntityType Name="ExpertResume">
           <Key>
@@ -166,6 +161,7 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Updated" Type="datetime" />
           <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="ViewCount" Type="int" />
         </EntityType>
         <EntityType Name="ForumPostCategory">
           <Key>
@@ -474,8 +470,8 @@
           <Property Name="TaskDetail" Type="nvarchar(max)" />
           <Property Name="TeachToID" Type="int" />
           <Property Name="WorkingHoursID" Type="int" />
-          <Property Name="PayFrom" Type="nvarchar" MaxLength="50" />
-          <Property Name="PayTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PayFrom" Type="int" />
+          <Property Name="PayTo" Type="int" />
           <Property Name="SalaryID" Type="int" />
           <Property Name="TaskPlace" Type="int" />
           <Property Name="TownID" Type="int" />
@@ -488,8 +484,8 @@
           <Property Name="Requirement" Type="nvarchar" MaxLength="50" />
           <Property Name="HumanList" Type="nvarchar" MaxLength="50" />
           <Property Name="LanguageRequired" Type="nvarchar" MaxLength="50" />
-          <Property Name="SkillRequiredID" Type="nvarchar" MaxLength="50" />
-          <Property Name="CertificateRequiredID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillRequiredID" Type="int" />
+          <Property Name="CertificateRequiredID" Type="int" />
           <Property Name="ServiceStatus" Type="bit" />
           <Property Name="StatusChangeReasonID" Type="int" />
           <Property Name="PublishOrNot" Type="nvarchar" MaxLength="50" />
@@ -1338,6 +1334,7 @@
           <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificateType" EntityType="Self.CertificateType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChatBlockList" EntityType="Self.ChatBlockList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckIn" EntityType="Self.CheckIn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpertApplication" EntityType="Self.ExpertApplication" Schema="dbo" store:Type="Tables" />
@@ -1381,15 +1378,6 @@
           <EntitySet Name="TeachToList" EntityType="Self.TeachToList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkingTime" EntityType="Self.WorkingTime" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ChatMessage].[ChatMessageID] AS [ChatMessageID], 
-    [ChatMessage].[SenderID] AS [SenderID], 
-    [ChatMessage].[ReceiverID] AS [ReceiverID], 
-    [ChatMessage].[Message] AS [Message], 
-    [ChatMessage].[Created] AS [Created]
-    FROM [dbo].[ChatMessage] AS [ChatMessage]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="HumanList" EntityType="Self.HumanList" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [HumanList].[CaseID] AS [CaseID], 
@@ -1727,6 +1715,18 @@
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ChatBlockList_MemberAccount" FromRole="ChatBlockList" ToRole="MemberAccount" />
           <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_ChatBlockList_MemberAccountBlocked" FromRole="ChatBlockList" ToRole="MemberAccount" />
         </EntityType>
+        <EntityType Name="ChatMessage">
+          <Key>
+            <PropertyRef Name="ChatMessageID" />
+          </Key>
+          <Property Name="ChatMessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderID" Type="Int32" Nullable="false" />
+          <Property Name="ReceiverID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="ChatMessage" ToRole="MemberAccount" />
+          <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="ChatMessage" ToRole="MemberAccount" />
+        </EntityType>
         <EntityType Name="CheckIn">
           <Key>
             <PropertyRef Name="CheckID" />
@@ -1754,6 +1754,7 @@
           <Property Name="AccountID" Type="Int32" />
           <Property Name="CaseStatusID" Type="Int32" />
           <Property Name="RatingID" Type="Int32" />
+          <Property Name="ExpertAccountID" Type="Int32" />
           <NavigationProperty Name="CaseStatusList" Relationship="Self.FK_ExpertApplication_CaseStatusList" FromRole="ExpertApplication" ToRole="CaseStatusList" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ExpertApplication_MemberAccount" FromRole="ExpertApplication" ToRole="MemberAccount" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_ExpertApplication_Rating" FromRole="ExpertApplication" ToRole="Rating" />
@@ -1830,6 +1831,7 @@
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Updated" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="ViewCount" Type="Int32" />
           <NavigationProperty Name="ForumPost1" Relationship="Self.FK_forumPost_forumPost" FromRole="ForumPost" ToRole="ForumPost1" />
           <NavigationProperty Name="ForumPost2" Relationship="Self.FK_forumPost_forumPost" FromRole="ForumPost1" ToRole="ForumPost" />
           <NavigationProperty Name="ForumStatus" Relationship="Self.FK_ForumPost_ForumStatus" FromRole="ForumPost" ToRole="ForumStatus" />
@@ -1914,14 +1916,14 @@
           <Property Name="MemberPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ChatBlockList" Relationship="Self.FK_ChatBlockList_MemberAccount" FromRole="MemberAccount" ToRole="ChatBlockList" />
           <NavigationProperty Name="ChatBlockList1" Relationship="Self.FK_ChatBlockList_MemberAccountBlocked" FromRole="MemberAccount" ToRole="ChatBlockList" />
+          <NavigationProperty Name="ChatMessage" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="MemberAccount" ToRole="ChatMessage" />
+          <NavigationProperty Name="ChatMessage1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="MemberAccount" ToRole="ChatMessage" />
           <NavigationProperty Name="CheckIn" Relationship="Self.FK_CheckIn_MemberAccount" FromRole="MemberAccount" ToRole="CheckIn" />
           <NavigationProperty Name="ExpertApplication" Relationship="Self.FK_ExpertApplication_MemberAccount" FromRole="MemberAccount" ToRole="ExpertApplication" />
           <NavigationProperty Name="ForgetPassword" Relationship="Self.FK_ForgetPassword_MemberAccount" FromRole="MemberAccount" ToRole="ForgetPassword" />
           <NavigationProperty Name="ForumPost" Relationship="Self.FK_ForumPost_MemberAccount" FromRole="MemberAccount" ToRole="ForumPost" />
           <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_MemberAccount" FromRole="MemberAccount" ToRole="ForumPostComment" />
           <NavigationProperty Name="LoginHistory" Relationship="Self.FK_LoginHistory_MemberAccount" FromRole="MemberAccount" ToRole="LoginHistory" />
-          <NavigationProperty Name="ChatMessage" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="MemberAccount" ToRole="ChatMessage" />
-          <NavigationProperty Name="ChatMessage1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="MemberAccount" ToRole="ChatMessage" />
           <NavigationProperty Name="MemberCollection" Relationship="Self.FK_MemberCollection_MemberAccount" FromRole="MemberAccount" ToRole="MemberCollection" />
           <NavigationProperty Name="MemberRoleConn" Relationship="Self.FK_MemberRoleConn_MemberAccount" FromRole="MemberAccount" ToRole="MemberRoleConn" />
           <NavigationProperty Name="MemberStatusList" Relationship="Self.FK_MemberStatusList_MemberAccount" FromRole="MemberAccount" ToRole="MemberStatusList" />
@@ -2210,8 +2212,8 @@
           <Property Name="TaskDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TeachToID" Type="Int32" />
           <Property Name="WorkingHoursID" Type="Int32" />
-          <Property Name="PayFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PayTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PayFrom" Type="Int32" />
+          <Property Name="PayTo" Type="Int32" />
           <Property Name="SalaryID" Type="Int32" />
           <Property Name="TaskPlace" Type="Int32" />
           <Property Name="TownID" Type="Int32" />
@@ -2224,8 +2226,8 @@
           <Property Name="Requirement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HumanList" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LanguageRequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SkillRequiredID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CertificateRequiredID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillRequiredID" Type="Int32" />
+          <Property Name="CertificateRequiredID" Type="Int32" />
           <Property Name="ServiceStatus" Type="Boolean" />
           <Property Name="StatusChangeReasonID" Type="Int32" />
           <Property Name="PublishOrNot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2290,22 +2292,6 @@
           <Property Name="WorkingHoursFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WorkingHoursTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Resume" Relationship="Self.FK_Resume_WorkingTime" FromRole="WorkingTime" ToRole="Resume" />
-        </EntityType>
-        <EntityType Name="ChatMessage">
-          <Key>
-            <PropertyRef Name="ChatMessageID" />
-            <PropertyRef Name="SenderID" />
-            <PropertyRef Name="ReceiverID" />
-            <PropertyRef Name="Message" />
-            <PropertyRef Name="Created" />
-          </Key>
-          <Property Name="ChatMessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SenderID" Type="Int32" Nullable="false" />
-          <Property Name="ReceiverID" Type="Int32" Nullable="false" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ChatMessage_MemberAccountReceiver" FromRole="ChatMessage" ToRole="MemberAccount" />
-          <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_ChatMessage_MemberAccountSender" FromRole="ChatMessage" ToRole="MemberAccount" />
         </EntityType>
         <EntityType Name="HumanList">
           <Key>
@@ -2470,6 +2456,30 @@
             </Principal>
             <Dependent Role="ChatBlockList">
               <PropertyRef Name="BlockedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMessage_MemberAccountReceiver">
+          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+          <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="ChatMessage">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMessage_MemberAccountSender">
+          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+          <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="ChatMessage">
+              <PropertyRef Name="SenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2722,30 +2732,6 @@
             </Principal>
             <Dependent Role="LoginHistory">
               <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChatMessage_MemberAccountReceiver">
-          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-          <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberAccount">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="ChatMessage">
-              <PropertyRef Name="ReceiverID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChatMessage_MemberAccountSender">
-          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-          <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberAccount">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="ChatMessage">
-              <PropertyRef Name="SenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3081,6 +3067,7 @@
           <EntitySet Name="Certificate" EntityType="Self.Certificate" />
           <EntitySet Name="CertificateType" EntityType="Self.CertificateType" />
           <EntitySet Name="ChatBlockList" EntityType="Self.ChatBlockList" />
+          <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" />
           <EntitySet Name="CheckIn" EntityType="Self.CheckIn" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="ExpertApplication" EntityType="Self.ExpertApplication" />
@@ -3124,7 +3111,6 @@
           <EntitySet Name="TeachToList" EntityType="Self.TeachToList" />
           <EntitySet Name="Town" EntityType="Self.Town" />
           <EntitySet Name="WorkingTime" EntityType="Self.WorkingTime" />
-          <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" />
           <EntitySet Name="HumanList" EntityType="Self.HumanList" />
           <AssociationSet Name="FK_ApplicationList_CaseStatusList" Association="Self.FK_ApplicationList_CaseStatusList">
             <End Role="CaseStatusList" EntitySet="CaseStatusList" />
@@ -3177,6 +3163,14 @@
           <AssociationSet Name="FK_ChatBlockList_MemberAccountBlocked" Association="Self.FK_ChatBlockList_MemberAccountBlocked">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="ChatBlockList" EntitySet="ChatBlockList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMessage_MemberAccountReceiver" Association="Self.FK_ChatMessage_MemberAccountReceiver">
+            <End Role="MemberAccount" EntitySet="MemberAccount" />
+            <End Role="ChatMessage" EntitySet="ChatMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMessage_MemberAccountSender" Association="Self.FK_ChatMessage_MemberAccountSender">
+            <End Role="MemberAccount" EntitySet="MemberAccount" />
+            <End Role="ChatMessage" EntitySet="ChatMessage" />
           </AssociationSet>
           <AssociationSet Name="FK_CheckIn_MemberAccount" Association="Self.FK_CheckIn_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
@@ -3261,14 +3255,6 @@
           <AssociationSet Name="FK_LoginHistory_MemberAccount" Association="Self.FK_LoginHistory_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="LoginHistory" EntitySet="LoginHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChatMessage_MemberAccountReceiver" Association="Self.FK_ChatMessage_MemberAccountReceiver">
-            <End Role="MemberAccount" EntitySet="MemberAccount" />
-            <End Role="ChatMessage" EntitySet="ChatMessage" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChatMessage_MemberAccountSender" Association="Self.FK_ChatMessage_MemberAccountSender">
-            <End Role="MemberAccount" EntitySet="MemberAccount" />
-            <End Role="ChatMessage" EntitySet="ChatMessage" />
           </AssociationSet>
           <AssociationSet Name="FK_MemberCollection_MemberAccount" Association="Self.FK_MemberCollection_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
@@ -3488,6 +3474,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ChatMessage">
+            <EntityTypeMapping TypeName="NewIspanProjectModel.ChatMessage">
+              <MappingFragment StoreEntitySet="ChatMessage">
+                <ScalarProperty Name="ChatMessageID" ColumnName="ChatMessageID" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CheckIn">
             <EntityTypeMapping TypeName="NewIspanProjectModel.CheckIn">
               <MappingFragment StoreEntitySet="CheckIn">
@@ -3514,6 +3511,7 @@
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
                 <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+                <ScalarProperty Name="ExpertAccountID" ColumnName="ExpertAccountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3585,6 +3583,7 @@
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Updated" ColumnName="Updated" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3983,17 +3982,6 @@
                 <ScalarProperty Name="WorkingDateTo" ColumnName="WorkingDateTo" />
                 <ScalarProperty Name="WorkingHoursFrom" ColumnName="WorkingHoursFrom" />
                 <ScalarProperty Name="WorkingHoursTo" ColumnName="WorkingHoursTo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ChatMessage">
-            <EntityTypeMapping TypeName="NewIspanProjectModel.ChatMessage">
-              <MappingFragment StoreEntitySet="ChatMessage">
-                <ScalarProperty Name="ChatMessageID" ColumnName="ChatMessageID" />
-                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
-                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

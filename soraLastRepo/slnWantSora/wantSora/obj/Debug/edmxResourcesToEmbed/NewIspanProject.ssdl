@@ -55,15 +55,9 @@
     <Property Name="AccountID" Type="int" Nullable="false" />
     <Property Name="BlockedID" Type="int" Nullable="false" />
   </EntityType>
-  <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'NewIspanProject.dbo.ChatMessage' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
   <EntityType Name="ChatMessage">
     <Key>
       <PropertyRef Name="ChatMessageID" />
-      <PropertyRef Name="SenderID" />
-      <PropertyRef Name="ReceiverID" />
-      <PropertyRef Name="Message" />
-      <PropertyRef Name="Created" />
     </Key>
     <Property Name="ChatMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SenderID" Type="int" Nullable="false" />
@@ -96,6 +90,7 @@
     <Property Name="AccountID" Type="int" />
     <Property Name="CaseStatusID" Type="int" />
     <Property Name="RatingID" Type="int" />
+    <Property Name="ExpertAccountID" Type="int" />
   </EntityType>
   <EntityType Name="ExpertResume">
     <Key>
@@ -161,6 +156,7 @@
     <Property Name="Created" Type="datetime" Nullable="false" />
     <Property Name="Updated" Type="datetime" />
     <Property Name="Status" Type="tinyint" Nullable="false" />
+    <Property Name="ViewCount" Type="int" />
   </EntityType>
   <EntityType Name="ForumPostCategory">
     <Key>
@@ -469,8 +465,8 @@
     <Property Name="TaskDetail" Type="nvarchar(max)" />
     <Property Name="TeachToID" Type="int" />
     <Property Name="WorkingHoursID" Type="int" />
-    <Property Name="PayFrom" Type="nvarchar" MaxLength="50" />
-    <Property Name="PayTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayFrom" Type="int" />
+    <Property Name="PayTo" Type="int" />
     <Property Name="SalaryID" Type="int" />
     <Property Name="TaskPlace" Type="int" />
     <Property Name="TownID" Type="int" />
@@ -483,8 +479,8 @@
     <Property Name="Requirement" Type="nvarchar" MaxLength="50" />
     <Property Name="HumanList" Type="nvarchar" MaxLength="50" />
     <Property Name="LanguageRequired" Type="nvarchar" MaxLength="50" />
-    <Property Name="SkillRequiredID" Type="nvarchar" MaxLength="50" />
-    <Property Name="CertificateRequiredID" Type="nvarchar" MaxLength="50" />
+    <Property Name="SkillRequiredID" Type="int" />
+    <Property Name="CertificateRequiredID" Type="int" />
     <Property Name="ServiceStatus" Type="bit" />
     <Property Name="StatusChangeReasonID" Type="int" />
     <Property Name="PublishOrNot" Type="nvarchar" MaxLength="50" />
@@ -1333,6 +1329,7 @@
     <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CertificateType" EntityType="Self.CertificateType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChatBlockList" EntityType="Self.ChatBlockList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckIn" EntityType="Self.CheckIn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ExpertApplication" EntityType="Self.ExpertApplication" Schema="dbo" store:Type="Tables" />
@@ -1376,15 +1373,6 @@
     <EntitySet Name="TeachToList" EntityType="Self.TeachToList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkingTime" EntityType="Self.WorkingTime" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ChatMessage" EntityType="Self.ChatMessage" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [ChatMessage].[ChatMessageID] AS [ChatMessageID], 
-    [ChatMessage].[SenderID] AS [SenderID], 
-    [ChatMessage].[ReceiverID] AS [ReceiverID], 
-    [ChatMessage].[Message] AS [Message], 
-    [ChatMessage].[Created] AS [Created]
-    FROM [dbo].[ChatMessage] AS [ChatMessage]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="HumanList" EntityType="Self.HumanList" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [HumanList].[CaseID] AS [CaseID], 

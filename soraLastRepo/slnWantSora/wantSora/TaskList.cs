@@ -33,8 +33,8 @@ namespace wantSora
         public string TaskDetail { get; set; }
         public Nullable<int> TeachToID { get; set; }
         public Nullable<int> WorkingHoursID { get; set; }
-        public string PayFrom { get; set; }
-        public string PayTo { get; set; }
+        public Nullable<int> PayFrom { get; set; }
+        public Nullable<int> PayTo { get; set; }
         public Nullable<int> SalaryID { get; set; }
         public Nullable<int> TaskPlace { get; set; }
         public Nullable<int> TownID { get; set; }
@@ -47,8 +47,8 @@ namespace wantSora
         public string Requirement { get; set; }
         public string HumanList { get; set; }
         public string LanguageRequired { get; set; }
-        public string SkillRequiredID { get; set; }
-        public string CertificateRequiredID { get; set; }
+        public Nullable<int> SkillRequiredID { get; set; }
+        public Nullable<int> CertificateRequiredID { get; set; }
         public Nullable<bool> ServiceStatus { get; set; }
         public Nullable<int> StatusChangeReasonID { get; set; }
         public string PublishOrNot { get; set; }

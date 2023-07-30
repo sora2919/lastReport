@@ -63,6 +63,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ChatMessage">
+      <EntityTypeMapping TypeName="NewIspanProjectModel.ChatMessage">
+        <MappingFragment StoreEntitySet="ChatMessage">
+          <ScalarProperty Name="ChatMessageID" ColumnName="ChatMessageID" />
+          <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+          <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CheckIn">
       <EntityTypeMapping TypeName="NewIspanProjectModel.CheckIn">
         <MappingFragment StoreEntitySet="CheckIn">
@@ -89,6 +100,7 @@
           <ScalarProperty Name="AccountID" ColumnName="AccountID" />
           <ScalarProperty Name="CaseStatusID" ColumnName="CaseStatusID" />
           <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+          <ScalarProperty Name="ExpertAccountID" ColumnName="ExpertAccountID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -160,6 +172,7 @@
           <ScalarProperty Name="Created" ColumnName="Created" />
           <ScalarProperty Name="Updated" ColumnName="Updated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -558,17 +571,6 @@
           <ScalarProperty Name="WorkingDateTo" ColumnName="WorkingDateTo" />
           <ScalarProperty Name="WorkingHoursFrom" ColumnName="WorkingHoursFrom" />
           <ScalarProperty Name="WorkingHoursTo" ColumnName="WorkingHoursTo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ChatMessage">
-      <EntityTypeMapping TypeName="NewIspanProjectModel.ChatMessage">
-        <MappingFragment StoreEntitySet="ChatMessage">
-          <ScalarProperty Name="ChatMessageID" ColumnName="ChatMessageID" />
-          <ScalarProperty Name="SenderID" ColumnName="SenderID" />
-          <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="Created" ColumnName="Created" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

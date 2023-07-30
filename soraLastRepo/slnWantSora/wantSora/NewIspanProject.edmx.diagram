@@ -4,58 +4,58 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c570364730044712a7e157bc8d448deb" Name="Diagram1">
-        <EntityTypeShape EntityType="NewIspanProjectModel.ApplicationList" Width="1.5" PointX="14.25" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.CaseSkill" Width="1.5" PointX="17.25" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.CaseStatusList" Width="1.5" PointX="3.75" PointY="30" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Category" Width="1.5" PointX="6.75" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Certificate" Width="1.5" PointX="14" PointY="51.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.CertificateType" Width="1.5" PointX="11.75" PointY="51.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ChatBlockList" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.CheckIn" Width="1.5" PointX="3" PointY="27.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.City" Width="1.5" PointX="4.5" PointY="44.625" IsExpanded="true" />
+      <Diagram DiagramId="1737564a11a24d5eade199cbba996680" Name="Diagram1">
+        <EntityTypeShape EntityType="NewIspanProjectModel.ApplicationList" Width="1.5" PointX="14.25" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.CaseSkill" Width="1.5" PointX="17.25" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.CaseStatusList" Width="1.5" PointX="3.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Category" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Certificate" Width="1.5" PointX="12" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.CertificateType" Width="1.5" PointX="9.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ChatBlockList" Width="1.5" PointX="3" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ChatMessage" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.CheckIn" Width="1.5" PointX="3" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.City" Width="1.5" PointX="4.5" PointY="47.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.ExpertApplication" Width="1.5" PointX="6" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertResume" Width="1.5" PointX="11.25" PointY="38.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertWorkList" Width="1.5" PointX="13.5" PointY="39.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertWorks" Width="1.5" PointX="11.25" PointY="48.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ForgetPassword" Width="1.5" PointX="3" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ForumCategory" Width="1.5" PointX="9" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPost" Width="1.5" PointX="6" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPostCategory" Width="1.5" PointX="11.25" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPostComment" Width="1.5" PointX="11.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertResume" Width="1.5" PointX="11.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertWorkList" Width="1.5" PointX="13.5" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ExpertWorks" Width="1.5" PointX="11.25" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ForgetPassword" Width="1.5" PointX="3" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ForumCategory" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPost" Width="1.5" PointX="6" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPostCategory" Width="1.5" PointX="8.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ForumPostComment" Width="1.5" PointX="11.25" PointY="29.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.ForumStatus" Width="1.5" PointX="3.75" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Keyword" Width="1.5" PointX="15" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.LoginHistory" Width="1.5" PointX="3" PointY="40.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.MemberAccount" Width="1.5" PointX="0.75" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.MemberCollection" Width="1.5" PointX="6" PointY="35.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.MemberRoleConn" Width="1.5" PointX="3" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.MemberStatusList" Width="1.5" PointX="9" PointY="31.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Order" Width="1.5" PointX="9" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.OrderDetail" Width="1.5" PointX="14.25" PointY="31.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.PayWay" Width="1.5" PointX="6.75" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Product" Width="1.5" PointX="12" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ProductPhoto" Width="1.5" PointX="14.25" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Rating" Width="1.5" PointX="3.75" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Resume" Width="1.5" PointX="9" PointY="35.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeApplication" Width="1.5" PointX="11.25" PointY="42" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeCertificate" Width="1.5" PointX="16.25" PointY="40.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeKeywordList" Width="1.5" PointX="17.25" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeSkill" Width="1.5" PointX="17.25" PointY="33.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.RoleInfo" Width="1.5" PointX="0.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Keyword" Width="1.5" PointX="14" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.LoginHistory" Width="1.5" PointX="3" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.MemberAccount" Width="1.5" PointX="0.75" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.MemberCollection" Width="1.5" PointX="6" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.MemberRoleConn" Width="1.5" PointX="3" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.MemberStatusList" Width="1.5" PointX="9" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Order" Width="1.5" PointX="9" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.OrderDetail" Width="1.5" PointX="11.25" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.PayWay" Width="1.5" PointX="6.75" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Product" Width="1.5" PointX="9" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ProductPhoto" Width="1.5" PointX="11.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Rating" Width="1.5" PointX="3.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Resume" Width="1.5" PointX="9" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeApplication" Width="1.5" PointX="11.25" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeCertificate" Width="1.5" PointX="14.25" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeKeywordList" Width="1.5" PointX="16.25" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ResumeSkill" Width="1.5" PointX="17.25" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.RoleInfo" Width="1.5" PointX="0.75" PointY="37" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.Salary" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ServiceContact" Width="1.5" PointX="3" PointY="63" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Skill" Width="1.5" PointX="15" PointY="45.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.SkillType" Width="1.5" PointX="12.75" PointY="45.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.StatusChangeReason" Width="1.5" PointX="6.75" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.ServiceContact" Width="1.5" PointX="3" PointY="66.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Skill" Width="1.5" PointX="15" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.SkillType" Width="1.5" PointX="12.75" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.StatusChangeReason" Width="1.5" PointX="6.75" PointY="45" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.TaskKeywordList" Width="1.5" PointX="17.25" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.TaskList" Width="1.5" PointX="12" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.TaskNameList" Width="1.5" PointX="6.75" PointY="39" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.TaskPhoto" Width="1.5" PointX="14.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.TaskKeywordList" Width="1.5" PointX="17.25" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.TaskList" Width="1.5" PointX="9" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.TaskNameList" Width="1.5" PointX="6.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.TaskPhoto" Width="1.5" PointX="11.25" PointY="52.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.TeachToList" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.Town" Width="1.5" PointX="6.75" PointY="44.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.WorkingTime" Width="1.5" PointX="6.75" PointY="47.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewIspanProjectModel.ChatMessage" Width="1.5" PointX="3" PointY="65.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.Town" Width="1.5" PointX="6.75" PointY="47.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewIspanProjectModel.WorkingTime" Width="1.5" PointX="6.75" PointY="50.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewIspanProjectModel.HumanList" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="NewIspanProjectModel.FK_ApplicationList_CaseStatusList" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_ApplicationList_Rating" ManuallyRouted="false" />
@@ -70,6 +70,8 @@
         <AssociationConnector Association="NewIspanProjectModel.FK_ResumeCertificate_Certificate" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_ChatBlockList_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_ChatBlockList_MemberAccountBlocked" ManuallyRouted="false" />
+        <AssociationConnector Association="NewIspanProjectModel.FK_ChatMessage_MemberAccountReceiver" ManuallyRouted="false" />
+        <AssociationConnector Association="NewIspanProjectModel.FK_ChatMessage_MemberAccountSender" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_CheckIn_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_Town_City" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_ExpertApplication_MemberAccount" ManuallyRouted="false" />
@@ -91,8 +93,6 @@
         <AssociationConnector Association="NewIspanProjectModel.FK_ResumeKeywordList_Keyword" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_TaskKeywordList_Keyword" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_LoginHistory_MemberAccount" ManuallyRouted="false" />
-        <AssociationConnector Association="NewIspanProjectModel.FK_ChatMessage_MemberAccountReceiver" ManuallyRouted="false" />
-        <AssociationConnector Association="NewIspanProjectModel.FK_ChatMessage_MemberAccountSender" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_MemberCollection_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_MemberRoleConn_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="NewIspanProjectModel.FK_MemberStatusList_MemberAccount" ManuallyRouted="false" />

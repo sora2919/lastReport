@@ -19,6 +19,7 @@ namespace wantSora
         public Nullable<int> AccountID { get; set; }
         public Nullable<int> CaseStatusID { get; set; }
         public Nullable<int> RatingID { get; set; }
+        public Nullable<int> ExpertAccountID { get; set; }
     
         public virtual CaseStatusList CaseStatusList { get; set; }
         public virtual MemberAccount MemberAccount { get; set; }

@@ -19,14 +19,14 @@ namespace wantSora
         {
             this.ChatBlockList = new HashSet<ChatBlockList>();
             this.ChatBlockList1 = new HashSet<ChatBlockList>();
+            this.ChatMessage = new HashSet<ChatMessage>();
+            this.ChatMessage1 = new HashSet<ChatMessage>();
             this.CheckIn = new HashSet<CheckIn>();
             this.ExpertApplication = new HashSet<ExpertApplication>();
             this.ForgetPassword = new HashSet<ForgetPassword>();
             this.ForumPost = new HashSet<ForumPost>();
             this.ForumPostComment = new HashSet<ForumPostComment>();
             this.LoginHistory = new HashSet<LoginHistory>();
-            this.ChatMessage = new HashSet<ChatMessage>();
-            this.ChatMessage1 = new HashSet<ChatMessage>();
             this.MemberCollection = new HashSet<MemberCollection>();
             this.MemberRoleConn = new HashSet<MemberRoleConn>();
             this.MemberStatusList = new HashSet<MemberStatusList>();
@@ -54,6 +54,10 @@ namespace wantSora
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatBlockList> ChatBlockList1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatMessage> ChatMessage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatMessage> ChatMessage1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CheckIn> CheckIn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExpertApplication> ExpertApplication { get; set; }
@@ -65,10 +69,6 @@ namespace wantSora
         public virtual ICollection<ForumPostComment> ForumPostComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoginHistory> LoginHistory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChatMessage> ChatMessage { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChatMessage> ChatMessage1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberCollection> MemberCollection { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
