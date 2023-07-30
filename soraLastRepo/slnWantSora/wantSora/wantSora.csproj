@@ -371,7 +371,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Forum\List.cshtml" />
+    <Content Include="Views\Forum\CategoryList.cshtml" />
+    <Content Include="Views\Forum\PostList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

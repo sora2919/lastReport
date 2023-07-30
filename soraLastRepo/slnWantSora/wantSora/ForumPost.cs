@@ -11,7 +11,8 @@ namespace wantSora
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class ForumPost
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,12 +23,16 @@ namespace wantSora
             this.ForumPostComment = new HashSet<ForumPostComment>();
         }
     
+
         public int PostID { get; set; }
         public int AccountID { get; set; }
         public Nullable<int> ParentID { get; set; }
+        [DisplayName("文章標題")]
         public string Title { get; set; }
         public string PostContent { get; set; }
+        [DisplayName("發表時間")]
         public System.DateTime Created { get; set; }
+        [DisplayName("最後更新時間")]
         public Nullable<System.DateTime> Updated { get; set; }
         public byte Status { get; set; }
     

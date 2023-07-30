@@ -1,0 +1,77 @@
+﻿@model IEnumerable<wantSora.ForumPost>
+
+@{
+    ViewBag.Title = "PostList";
+}
+
+
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Forum">討論區</a></li>
+        <li class="breadcrumb-item active">@Model.FirstOrDefault().ForumPostCategory.FirstOrDefault().ForumCategory.Title</ li >
+    </ol>
+</nav>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<div class="qodef-form-holder">
+    <input type="hidden" name="action" value="bbp-search-request">
+    <input type="text" placeholder="Search forums..." class="qodef-search-field" autocomplete="off" name="bbp_search" tabindex="101" value="">
+    <button tabindex="102" class="button" type="submit" value=""><i class="bi bi-search"></i></button>
+</div>
+<table class="table text-start">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th class="text-center">
+            作者
+        </th>
+        <th class="text-center">
+            回覆數
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Created)
+            <i class="bi bi-arrow-up-square"></i> 
+            <i class="bi bi-arrow-down-square"></i>
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Updated)
+        </th>
+        <th class="text-center">
+            最新回覆時間
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.MemberAccount.UserName)
+            </td>
+            <td class="text-center">
+                @{
+                    int count = item.ForumPostComment.Count(c => c.Status == 1 || c.Status == 4);
+                }
+                @count
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().Created)<br />
+                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().MemberAccount.UserName)
+            </td>
+        </tr>
+    }
+
+</table>
