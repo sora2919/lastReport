@@ -91,7 +91,7 @@ namespace wantSora.Controllers
             category.CategoryID = categoryId;
             db.ForumPostCategory.Add(category);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("PostList", new { categoryId = categoryId });
         }
     }
 }
