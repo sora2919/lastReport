@@ -47,14 +47,14 @@
     {
         <tr>
             <td>
-                <span class="text-body-emphasis">@Html.DisplayFor(modelItem => item.Title)</span><br />
-                @Html.DisplayFor(modelItem => item.MemberAccount.UserName)
+                <span class="h6 link-offset-1-hover">@Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "PostView", "Forum", new { postID = item.PostID }, null)</span><br />
+                <span class="text-secondary">@Html.DisplayFor(modelItem => item.MemberAccount.UserName)</span>
             </td>
             <td class="text-center">
                 @{
                     int count = item.ForumPostComment.Count(c => c.Status == 1 || c.Status == 4);
                 }
-                @count/假的觀看次數
+                @count <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
             </td>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Created)

@@ -27,6 +27,7 @@ namespace wantSora.Controllers
             var posts = from p in db.ForumPost
                         where p.ForumPostCategory.FirstOrDefault().CategoryID == categoryId
                         where p.Status==1||p.Status==4
+                        orderby p.Created descending
                         select p;
 
             return View(posts);
@@ -34,6 +35,10 @@ namespace wantSora.Controllers
 
         public ActionResult PostView(int? postID)
         {
+            if (postID == null)
+                return RedirectToAction("PostList");
+            var post = db.ForumPost.FirstOrDefault(p => p.PostID == (int)postID);
+
             //-----------------------觀看次數-----------------------------
             int viewCount = 0;
             //建立MemoryCache，先確定是否有某篇文章的KEY存在
@@ -45,11 +50,9 @@ namespace wantSora.Controllers
             else
             {
                 // 如果沒有這個key從資料庫中取得觀看次數
-                var post = db.ForumPost.FirstOrDefault(p => p.PostID == (int)postID);
                 viewCount = (post != null && post.ViewCount.HasValue) ? post.ViewCount.Value : 0;
 
                 viewCount++;
-
                 post.ViewCount = viewCount;
                 db.SaveChanges();
                 // 將觀看次數存入快取，設定快取時間，例如 1 小時
@@ -58,7 +61,7 @@ namespace wantSora.Controllers
                 cache.Add("ViewCount_" + postID, viewCount, policy);
             }
 
-            return View();
+            return View(post);
         }
     }
 }

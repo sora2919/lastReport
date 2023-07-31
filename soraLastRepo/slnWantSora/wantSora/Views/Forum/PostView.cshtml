@@ -1,0 +1,48 @@
+﻿@model wantSora.ForumPost
+
+@{
+    ViewBag.Title = "PostView";
+    int categoryId = Model.ForumPostCategory.FirstOrDefault().CategoryID;
+    string categoryTitle = Model.ForumPostCategory.FirstOrDefault().ForumCategory.Title;
+}
+
+
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Forum">討論區</a></li>
+        <li class="breadcrumb-item">@Html.ActionLink(@categoryTitle, "PostList", "Forum", new { categoryId = categoryId }, null)</li>
+        <li class="breadcrumb-item active">@Model.Title</ li >
+
+    </ol>
+</nav>
+
+<div class="bg-white">
+    <h4 class="border-bottom">@Model.Title</h4>
+    <div>
+        <div class="border-bottom">
+            <span>作者：@Model.MemberAccount.UserName</span>
+            <span class="small text-body-tertiary">@Model.Created</span>
+            <span class="small small text-body-tertiary">觀看次數: @Html.DisplayFor(model => model.ViewCount)</span>
+            <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
+
+        </div>
+        <div>
+            @Html.Raw(Model.PostContent)
+        </div>
+
+
+
+    </div>
+    @{ if (Model.Updated != null)
+        {
+            <div class="small text-light">文章最後更新時間：@Model.Updated</div>
+        }
+    }
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("回上一頁", "PostList", "Forum", new { categoryId = categoryId }, null)
+</p>

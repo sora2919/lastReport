@@ -374,6 +374,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Forum\CategoryList.cshtml" />
     <Content Include="Views\Forum\PostList.cshtml" />
+    <Content Include="Views\Forum\PostView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
