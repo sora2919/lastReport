@@ -164,6 +164,7 @@
     <EntitySetMapping Name="ForumPost">
       <EntityTypeMapping TypeName="NewIspanProjectModel.ForumPost">
         <MappingFragment StoreEntitySet="ForumPost">
+          <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
           <ScalarProperty Name="PostID" ColumnName="PostID" />
           <ScalarProperty Name="AccountID" ColumnName="AccountID" />
           <ScalarProperty Name="ParentID" ColumnName="ParentID" />

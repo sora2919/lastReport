@@ -10,6 +10,7 @@ namespace wantSora.Controllers
 {
     public class ForumController : Controller
     {
+        int loginID = 56;//先綁死ID登入
         NewIspanProjectEntities db = new NewIspanProjectEntities();
 
         // GET: Forum
@@ -64,8 +65,32 @@ namespace wantSora.Controllers
             return View(post);
         }
 
-        public ActionResult CreatePost()
+        public ActionResult CreatePost(int? categoryId)
         {
+            if (categoryId == null)
+                return RedirectToAction("CategoryList");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreatePost(ForumPost post)
+        {
+            ForumPost x=new ForumPost();
+            x.AccountID = loginID;
+            x.Title=post.Title;
+            x.PostContent = post.PostContent;
+            x.Created = DateTime.Now;
+            x.Status = 1;
+            db.ForumPost.Add(x);
+            db.SaveChanges();
+
+            int categoryId = 0;
+            int.TryParse(Request.QueryString["categoryId"], out categoryId);
+            
+            ForumPostCategory category = new ForumPostCategory();
+            category.PostID = x.PostID;
+            category.CategoryID = categoryId;
+            db.ForumPostCategory.Add(category);
+            db.SaveChanges();
             return View();
         }
     }

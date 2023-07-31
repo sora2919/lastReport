@@ -193,6 +193,7 @@
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ForumPost_MemberAccount" FromRole="ForumPost" ToRole="MemberAccount" />
     <NavigationProperty Name="ForumPostCategory" Relationship="Self.FK_ForumPostCategory_forumPost" FromRole="ForumPost" ToRole="ForumPostCategory" />
     <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_forumPost" FromRole="ForumPost" ToRole="ForumPostComment" />
+    <Property Name="LikeCount" Type="Int32" />
   </EntityType>
   <EntityType Name="ForumPostCategory">
     <Key>

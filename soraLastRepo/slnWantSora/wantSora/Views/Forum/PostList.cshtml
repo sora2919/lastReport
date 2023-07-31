@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "PostList";
+    int categoryId = Model.FirstOrDefault().ForumPostCategory.FirstOrDefault().CategoryID;
+
 }
 
 
@@ -12,7 +14,7 @@
     </ol>
 </nav>
 <p>
-    @Html.ActionLink("Create New", "CreatePost")
+    @Html.ActionLink("Create New", "CreatePost", new { categoryId = categoryId })
 </p>
 
 

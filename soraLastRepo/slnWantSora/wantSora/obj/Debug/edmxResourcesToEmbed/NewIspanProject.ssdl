@@ -157,6 +157,7 @@
     <Property Name="Updated" Type="datetime" />
     <Property Name="Status" Type="tinyint" Nullable="false" />
     <Property Name="ViewCount" Type="int" />
+    <Property Name="LikeCount" Type="int" />
   </EntityType>
   <EntityType Name="ForumPostCategory">
     <Key>
@@ -630,7 +631,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ChatBlockList_MemberAccountBlocked">
+  <Association Name="FK_ChatBlockList_MemberBlocked">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
     <End Role="ChatBlockList" Type="Self.ChatBlockList" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1414,7 +1415,7 @@
       <End Role="MemberAccount" EntitySet="MemberAccount" />
       <End Role="ChatBlockList" EntitySet="ChatBlockList" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChatBlockList_MemberAccountBlocked" Association="Self.FK_ChatBlockList_MemberAccountBlocked">
+    <AssociationSet Name="FK_ChatBlockList_MemberBlocked" Association="Self.FK_ChatBlockList_MemberBlocked">
       <End Role="MemberAccount" EntitySet="MemberAccount" />
       <End Role="ChatBlockList" EntitySet="ChatBlockList" />
     </AssociationSet>

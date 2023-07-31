@@ -33,6 +33,7 @@ namespace wantSora
         public Nullable<System.DateTime> Updated { get; set; }
         public byte Status { get; set; }
         public Nullable<int> ViewCount { get; set; }
+        public Nullable<int> LikeCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForumPost> ForumPost1 { get; set; }

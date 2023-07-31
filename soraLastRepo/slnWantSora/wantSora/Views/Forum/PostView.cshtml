@@ -27,7 +27,7 @@
 
         </div>
         <div>
-            @Html.Raw(Model.PostContent)
+            @Html.Raw(HttpUtility.HtmlDecode(Model.PostContent))
         </div>
 
 

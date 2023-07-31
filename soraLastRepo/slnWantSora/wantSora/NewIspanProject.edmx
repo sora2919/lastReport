@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NewIspanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NewIspanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApplicationList">
           <Key>
             <PropertyRef Name="ApplicationListID" />
@@ -162,6 +162,7 @@
           <Property Name="Updated" Type="datetime" />
           <Property Name="Status" Type="tinyint" Nullable="false" />
           <Property Name="ViewCount" Type="int" />
+          <Property Name="LikeCount" Type="int" />
         </EntityType>
         <EntityType Name="ForumPostCategory">
           <Key>
@@ -635,7 +636,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChatBlockList_MemberAccountBlocked">
+        <Association Name="FK_ChatBlockList_MemberBlocked">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
           <End Role="ChatBlockList" Type="Self.ChatBlockList" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1419,7 +1420,7 @@
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="ChatBlockList" EntitySet="ChatBlockList" />
           </AssociationSet>
-          <AssociationSet Name="FK_ChatBlockList_MemberAccountBlocked" Association="Self.FK_ChatBlockList_MemberAccountBlocked">
+          <AssociationSet Name="FK_ChatBlockList_MemberBlocked" Association="Self.FK_ChatBlockList_MemberBlocked">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="ChatBlockList" EntitySet="ChatBlockList" />
           </AssociationSet>
@@ -1640,8 +1641,7 @@
             <End Role="Town" EntitySet="Town" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NewIspanProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1838,6 +1838,7 @@
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_ForumPost_MemberAccount" FromRole="ForumPost" ToRole="MemberAccount" />
           <NavigationProperty Name="ForumPostCategory" Relationship="Self.FK_ForumPostCategory_forumPost" FromRole="ForumPost" ToRole="ForumPostCategory" />
           <NavigationProperty Name="ForumPostComment" Relationship="Self.FK_ForumPostComment_forumPost" FromRole="ForumPost" ToRole="ForumPostComment" />
+          <Property Name="LikeCount" Type="Int32" />
         </EntityType>
         <EntityType Name="ForumPostCategory">
           <Key>
@@ -3575,6 +3576,7 @@
           <EntitySetMapping Name="ForumPost">
             <EntityTypeMapping TypeName="NewIspanProjectModel.ForumPost">
               <MappingFragment StoreEntitySet="ForumPost">
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
