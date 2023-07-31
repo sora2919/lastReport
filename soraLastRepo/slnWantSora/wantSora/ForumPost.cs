@@ -11,7 +11,8 @@ namespace wantSora
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class ForumPost
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,7 @@ namespace wantSora
         public int AccountID { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string PostContent { get; set; }
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }

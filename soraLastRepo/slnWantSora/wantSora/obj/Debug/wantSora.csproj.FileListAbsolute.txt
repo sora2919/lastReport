@@ -247,3 +247,4 @@ D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.csproj.C
 D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.csproj.CopyComplete
 D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.dll
 D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.pdb
+C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\zh-Hant\EntityFramework.SqlServer.resources.dll

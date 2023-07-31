@@ -63,5 +63,10 @@ namespace wantSora.Controllers
 
             return View(post);
         }
+
+        public ActionResult CreatePost()
+        {
+            return View();
+        }
     }
 }
