@@ -22,7 +22,7 @@ namespace wantSora.Controllers
             return View(datas);
         }
 
-        public ActionResult PostList(int? categoryId, string OrderBy)
+        public ActionResult PostList(int? categoryId, string OrderBy, string q)
         {
             if (categoryId == null)
                 return RedirectToAction("CategoryList");
@@ -31,6 +31,10 @@ namespace wantSora.Controllers
                         where p.ForumPostCategory.FirstOrDefault().CategoryID == categoryId
                         where p.Status == 1 || p.Status == 4
                         select p;
+            if(!string.IsNullOrEmpty(q))
+            {
+                //posts=posts.Where()
+            }
 
             switch (OrderBy)
             {
