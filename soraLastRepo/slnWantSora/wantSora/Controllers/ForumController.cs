@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
 using System.Web.Mvc;
+using X.PagedList;
 
 namespace wantSora.Controllers
 {
@@ -21,15 +22,29 @@ namespace wantSora.Controllers
             return View(datas);
         }
 
-        public ActionResult PostList(int? categoryId)
+        public ActionResult PostList(int? categoryId, string OrderBy)
         {
             if (categoryId == null)
                 return RedirectToAction("CategoryList");
+
             var posts = from p in db.ForumPost
                         where p.ForumPostCategory.FirstOrDefault().CategoryID == categoryId
-                        where p.Status==1||p.Status==4
-                        orderby p.Created descending
+                        where p.Status == 1 || p.Status == 4
                         select p;
+
+            switch (OrderBy)
+            {
+                case "Date":
+                    posts = posts.OrderBy(p => p.Created);
+                    break;
+                case "Date_desc":
+                    posts = posts.OrderByDescending(p => p.Created);
+                    break;
+                // Add more cases for other sorting options if needed
+                default:
+                    posts = posts.OrderByDescending(p => p.Created);
+                    break;
+            }
 
             return View(posts);
         }
@@ -80,6 +95,7 @@ namespace wantSora.Controllers
             x.PostContent = post.PostContent;
             x.Created = DateTime.Now;
             x.Status = 1;
+            x.ViewCount = 0;
             db.ForumPost.Add(x);
             db.SaveChanges();
 

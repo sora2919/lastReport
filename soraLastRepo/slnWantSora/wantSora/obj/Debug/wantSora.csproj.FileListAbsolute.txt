@@ -249,3 +249,6 @@ D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.dll
 D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\obj\Debug\wantSora.pdb
 C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
 D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
+C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.dll
+C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\X.PagedList.dll
+C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.xml
