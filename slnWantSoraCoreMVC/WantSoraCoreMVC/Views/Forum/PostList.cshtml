@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WantSoraCoreMVC.Models.ForumPost>
+
+@{
+    ViewData["Title"] = "PostList";
+    int categoryId = Model.FirstOrDefault().ForumPostCategories.FirstOrDefault().CategoryID;
+
+}
+
+<h1>PostList</h1>
+
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Forum">討論區</a></li>
+        <li class="breadcrumb-item active">@Model.FirstOrDefault().ForumPostCategories.FirstOrDefault().Category.Title</ li >
+    </ol>
+</nav>
+<p>
+    @Html.ActionLink("Create New", "CreatePost", new { categoryId = categoryId })
+</p>
+
+
+<div class="qodef-form-holder">
+    <input type="hidden" name="action" value="bbp-search-request">
+    <input type="text" placeholder="Search forums..." class="qodef-search-field" autocomplete="off" name="bbp_search" tabindex="101" value="">
+    <button tabindex="102" class="button" type="submit" value=""><i class="bi bi-search"></i></button>
+</div>
+<table class="table text-start form-text align-middle">
+    <tr class="h6">
+        <th>
+            文章標題
+        </th>
+        <th class="text-center">
+            回覆數/觀看次數
+        </th>
+        <th class="text-center">
+            發文時間
+
+            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date" }, new { @class = "bi bi-arrow-up-square link-underline link-underline-opacity-0" })
+
+            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date_desc" }, new { @class = "bi bi-arrow-down-square link-underline link-underline-opacity-0" })
+        </th>
+        <th class="text-center">
+            最後更新時間
+        </th>
+        <th class="text-center">
+            最新回覆時間
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span class="h6 link-offset-1-hover">@Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "PostView", "Forum", new { postID = item.PostId }, null)</span><br />
+                <span class="text-secondary">@Html.DisplayFor(modelItem => item.Account.UserName)</span>
+            </td>
+            <td class="text-center">
+                @{
+                    int count = item.ForumPostComment.Count(c => c.Status == 1 || c.Status == 4);
+                }
+                @count <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().Created)<br />
+                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().MemberAccount.UserName)
+            </td>
+        </tr>
+    }
+
+</table>
