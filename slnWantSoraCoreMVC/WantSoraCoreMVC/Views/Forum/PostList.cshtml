@@ -2,9 +2,11 @@
 
 @{
     ViewData["Title"] = "PostList";
-    int categoryId = Model.FirstOrDefault().ForumPostCategories.FirstOrDefault().CategoryID;
+    int categoryId = ViewBag.CategoryId;
 
 }
+
+
 
 <h1>PostList</h1>
 
@@ -15,7 +17,7 @@
     </ol>
 </nav>
 <p>
-    @Html.ActionLink("Create New", "CreatePost", new { categoryId = categoryId })
+    @Html.ActionLink("發表文章", "CreatePost", new { categoryId = categoryId })
 </p>
 
 
@@ -51,12 +53,12 @@
     {
         <tr>
             <td>
-                <span class="h6 link-offset-1-hover">@Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "PostView", "Forum", new { postID = item.PostId }, null)</span><br />
+                <span class="h6 link-offset-1-hover">@Html.ActionLink(item.Title, "PostView", "Forum", new { postID = item.PostId }, null)</span><br />
                 <span class="text-secondary">@Html.DisplayFor(modelItem => item.Account.UserName)</span>
             </td>
             <td class="text-center">
                 @{
-                    int count = item.ForumPostComment.Count(c => c.Status == 1 || c.Status == 4);
+                    int count = item.ForumPostComments.Count(c => c.Status == 1 || c.Status == 4);
                 }
                 @count <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
             </td>
@@ -67,8 +69,8 @@
                 @Html.DisplayFor(modelItem => item.Updated)
             </td>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().Created)<br />
-                @Html.DisplayFor(modelItem => item.ForumPostComment.OrderByDescending(c => c.Created).FirstOrDefault().MemberAccount.UserName)
+                @Html.DisplayFor(modelItem => item.ForumPostComments.OrderByDescending(c => c.Created).FirstOrDefault().Created)<br />
+                @Html.DisplayFor(modelItem => item.ForumPostComments.OrderByDescending(c => c.Created).FirstOrDefault().Account.UserName)
             </td>
         </tr>
     }

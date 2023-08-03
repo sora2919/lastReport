@@ -15,8 +15,6 @@ public partial class TaskList
 
     public string? TaskDetail { get; set; }
 
-    public int? TeachToId { get; set; }
-
     public int? WorkingHoursId { get; set; }
 
     public int? PayFrom { get; set; }

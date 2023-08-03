@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using WantSoraCoreMVC.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+
 
 namespace WantSoraCoreMVC.Controllers
 {
@@ -25,13 +28,21 @@ namespace WantSoraCoreMVC.Controllers
 
         public IActionResult PostList(int? categoryId, string OrderBy, string q)
         {
+
+
             if (categoryId == null)
                 return RedirectToAction("CategoryList");
 
             var posts = from p in db.ForumPosts
+                        .Include(p => p.ForumPostCategories).ThenInclude(pc => pc.Category)
+                        .Include(p => p.Account)
+                        .Include(p => p.ForumPostComments).ThenInclude(c => c.StatusNavigation)
+                        .Include(p => p.ForumPostComments).ThenInclude(c => c.Account)
                         where p.ForumPostCategories.FirstOrDefault().CategoryId == categoryId
                         where p.Status == 1 || p.Status == 4
                         select p;
+
+
             if (!string.IsNullOrEmpty(q))
             {
                 //posts=posts.Where()
@@ -51,6 +62,7 @@ namespace WantSoraCoreMVC.Controllers
                     break;
             }
 
+            ViewBag.CategoryId = categoryId;
             return View(posts);
         }
 
@@ -58,7 +70,13 @@ namespace WantSoraCoreMVC.Controllers
         {
             if (postID == null)
                 return RedirectToAction("PostList");
-            var post = db.ForumPosts.FirstOrDefault(p => p.PostId == (int)postID);
+
+            var post = db.ForumPosts
+                        .Include(p => p.ForumPostCategories).ThenInclude(pc => pc.Category)
+                        .Include(p => p.Account)
+                        .Include(p => p.ForumPostComments).ThenInclude(c => c.StatusNavigation)
+                        .Include(p => p.ForumPostComments).ThenInclude(c => c.Account)
+                        .FirstOrDefault(p => p.PostId == (int)postID);
 
             //-----------------------觀看次數-----------------------------
             int viewCount = 0;

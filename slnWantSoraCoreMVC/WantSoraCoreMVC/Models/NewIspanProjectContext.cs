@@ -113,8 +113,6 @@ public partial class NewIspanProjectContext : DbContext
 
     public virtual DbSet<TaskPhoto> TaskPhotos { get; set; }
 
-    public virtual DbSet<TeachToList> TeachToLists { get; set; }
-
     public virtual DbSet<Town> Towns { get; set; }
 
     public virtual DbSet<WorkingTime> WorkingTimes { get; set; }
@@ -976,7 +974,6 @@ public partial class NewIspanProjectContext : DbContext
             entity.Property(e => e.TaskPeriod).HasMaxLength(50);
             entity.Property(e => e.TaskStart).HasMaxLength(50);
             entity.Property(e => e.TaskTitle).HasMaxLength(50);
-            entity.Property(e => e.TeachToId).HasColumnName("TeachToID");
             entity.Property(e => e.TownId).HasColumnName("TownID");
             entity.Property(e => e.WorkingHoursId).HasColumnName("WorkingHoursID");
         });
@@ -1004,18 +1001,6 @@ public partial class NewIspanProjectContext : DbContext
                 .HasForeignKey(d => d.CaseId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TaskPhoto_TaskList");
-        });
-
-        modelBuilder.Entity<TeachToList>(entity =>
-        {
-            entity.HasKey(e => e.TeachToId);
-
-            entity.ToTable("TeachToList");
-
-            entity.Property(e => e.TeachToId)
-                .ValueGeneratedNever()
-                .HasColumnName("TeachToID");
-            entity.Property(e => e.TeachTo).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Town>(entity =>

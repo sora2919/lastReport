@@ -252,3 +252,6 @@ D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\bin\zh-Hant\EntityFramework
 C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.dll
 C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\X.PagedList.dll
 C:\fork\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.xml
+D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.dll
+D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\bin\X.PagedList.dll
+D:\FORK\lastReport\soraLastRepo\slnWantSora\wantSora\bin\JetBrains.Annotations.xml
