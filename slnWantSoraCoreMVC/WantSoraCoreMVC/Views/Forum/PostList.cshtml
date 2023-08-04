@@ -1,4 +1,9 @@
-﻿@model IEnumerable<WantSoraCoreMVC.Models.ForumPost>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<ForumPost>
+@*@model IEnumerable<WantSoraCoreMVC.Models.ForumPost>*@
 
 @{
     ViewData["Title"] = "PostList";
@@ -20,12 +25,16 @@
     @Html.ActionLink("發表文章", "CreatePost", new { categoryId = categoryId })
 </p>
 
+@using (Html.BeginForm())
+{
+    <div class="qodef-form-holder">
+        <input type="text" placeholder="Search forums..." class="qodef-search-field" autocomplete="off" name="q" tabindex="101" value="@ViewBag.CurrentQ">
+        <button tabindex="102" class="button" type="submit" value=""><i class="bi bi-search"></i></button>
+    </div>
+}
 
-<div class="qodef-form-holder">
-    <input type="hidden" name="action" value="bbp-search-request">
-    <input type="text" placeholder="Search forums..." class="qodef-search-field" autocomplete="off" name="bbp_search" tabindex="101" value="">
-    <button tabindex="102" class="button" type="submit" value=""><i class="bi bi-search"></i></button>
-</div>
+
+
 <table class="table text-start form-text align-middle">
     <tr class="h6">
         <th>
@@ -37,9 +46,9 @@
         <th class="text-center">
             發文時間
 
-            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date" }, new { @class = "bi bi-arrow-up-square link-underline link-underline-opacity-0" })
+            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date" ,q=ViewBag.CurrentQ}, new { @class = "bi bi-arrow-up-square link-underline link-underline-opacity-0" })
 
-            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date_desc" }, new { @class = "bi bi-arrow-down-square link-underline link-underline-opacity-0" })
+            @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date_desc",q=ViewBag.CurrentQ }, new { @class = "bi bi-arrow-down-square link-underline link-underline-opacity-0" })
         </th>
         <th class="text-center">
             最後更新時間
@@ -76,3 +85,6 @@
     }
 
 </table>
+
+
+@Html.PagedListPager(Model, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}))

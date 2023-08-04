@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using WantSoraCoreMVC.Models;
+using X.PagedList;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 
@@ -26,9 +28,12 @@ namespace WantSoraCoreMVC.Controllers
             return View(datas);
         }
 
-        public IActionResult PostList(int? categoryId, string OrderBy, string q)
-        {
 
+
+        public IActionResult PostList(int? categoryId, string OrderBy, string q,int page=1)
+        {
+            ViewBag.CurrentSort = OrderBy;
+            ViewBag.CurrentQ = q;
 
             if (categoryId == null)
                 return RedirectToAction("CategoryList");
@@ -45,7 +50,10 @@ namespace WantSoraCoreMVC.Controllers
 
             if (!string.IsNullOrEmpty(q))
             {
-                //posts=posts.Where()
+                posts=posts.Where(p=>p.Account.UserName.Contains(q)
+                               || p.Title.Contains(q)
+                               ||p.PostContent.Contains(q)
+                );
             }
 
             switch (OrderBy)
@@ -63,7 +71,12 @@ namespace WantSoraCoreMVC.Controllers
             }
 
             ViewBag.CategoryId = categoryId;
-            return View(posts);
+
+            int pageSize = 5;
+            IPagedList<ForumPost> pagedPosts = posts.ToPagedList(page, pageSize);
+            return View(pagedPosts);
+
+
         }
 
         public IActionResult PostView(int? postID)
