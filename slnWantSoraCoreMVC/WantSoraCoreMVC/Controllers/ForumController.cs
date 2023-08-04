@@ -72,7 +72,7 @@ namespace WantSoraCoreMVC.Controllers
 
             ViewBag.CategoryId = categoryId;
 
-            int pageSize = 5;
+            int pageSize = 10;
             IPagedList<ForumPost> pagedPosts = posts.ToPagedList(page, pageSize);
             return View(pagedPosts);
 

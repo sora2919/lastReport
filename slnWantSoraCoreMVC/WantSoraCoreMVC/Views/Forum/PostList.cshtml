@@ -1,6 +1,6 @@
 ﻿@using X.PagedList;
-@using X.PagedList.Mvc;
 @using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
 
 @model IPagedList<ForumPost>
 @*@model IEnumerable<WantSoraCoreMVC.Models.ForumPost>*@
@@ -34,26 +34,26 @@
 }
 
 
-
+<div class="row">
 <table class="table text-start form-text align-middle">
     <tr class="h6">
-        <th>
+        <th class="col-4">
             文章標題
         </th>
-        <th class="text-center">
+        <th class="text-center col-2">
             回覆數/觀看次數
         </th>
-        <th class="text-center">
+        <th class="text-center col-2">
             發文時間
 
             @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date" ,q=ViewBag.CurrentQ}, new { @class = "bi bi-arrow-up-square link-underline link-underline-opacity-0" })
 
             @Html.ActionLink(" ", "PostList", "Forum", new { categoryId = categoryId, OrderBy = "Date_desc",q=ViewBag.CurrentQ }, new { @class = "bi bi-arrow-down-square link-underline link-underline-opacity-0" })
         </th>
-        <th class="text-center">
+        <th class="text-center col-2">
             最後更新時間
         </th>
-        <th class="text-center">
+        <th class="text-center col-2">
             最新回覆時間
         </th>
     </tr>
@@ -85,6 +85,17 @@
     }
 
 </table>
+</div>
+
+<div class="pagination justify-content-center"
 
 
-@Html.PagedListPager(Model, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}))
+@Html.PagedListPager(Model, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}),new PagedListRenderOptions {
+    DisplayLinkToIndividualPages = true,
+    DisplayPageCountAndCurrentLocation = false,
+    MaximumPageNumbersToDisplay = 10,
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" },
+    UlElementClasses = new string[] { "pagination pagination-sm" }
+})
+</div>
