@@ -1,9 +1,9 @@
-﻿@model WantSoraCoreMVC.Models.ForumPost
+﻿@model WantSoraCoreMVC.ViewModels.ForumPostViewModel
 @using System.Web;
 @{
     ViewData["Title"] = "PostView";
-    int categoryId = Model.ForumPostCategories.FirstOrDefault().CategoryId;
-    string categoryTitle = Model.ForumPostCategories.FirstOrDefault().Category.Title;
+    int categoryId = Model.MainPost.ForumPostCategories.FirstOrDefault().CategoryId;
+    string categoryTitle = Model.MainPost.ForumPostCategories.FirstOrDefault().Category.Title;
 }
 
 
@@ -11,41 +11,80 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Forum">討論區</a></li>
         <li class="breadcrumb-item">@Html.ActionLink(@categoryTitle, "PostList", "Forum", new { categoryId = categoryId }, null)</li>
-        <li class="breadcrumb-item active">@Model.Title</ li >
+        <li class="breadcrumb-item active">@Model.MainPost.Title</ li >
 
     </ol>
 </nav>
 
 
-<div class="bg-primary bg-opacity-25 m-5">
-    <div class="bg-body p-3 rounded-3 border m-5">
-        <h4 class="border-bottom"><i class="bi bi-chat-right-heart-fill text-danger text-opacity-50"></i> @Model.Title</h4>
+@*#1的部分*@
+<div class="bg-primary bg-opacity-10 rounded-3">　
+    <div class="bg-body rounded-3 border mx-3 p-3">
+        <h4 class="border-bottom"><i class="bi bi-chat-right-heart-fill text-danger text-opacity-50"></i> @Model.MainPost.Title</h4>
     <div class="p-3">
         <div class="border-bottom row">
-            <span class="col-7">作者：@Model.Account.UserName</span>
-                <span class="small text-body-tertiary col-2">@Model.Created</span>
-                <span class="small small text-body-tertiary  col-2">觀看次數: @Html.DisplayFor(model => model.ViewCount)</span>
-                <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75  col-1">Like</span>
-
+            <span class="col-8">作者：@Model.MainPost.Account.UserName</span>
+                <span class="col-4 text-end">　
+                <span class="small text-body-tertiary">@Model.MainPost.Created</span>　
+                <span class="small small text-body-tertiary">觀看次數: @Html.DisplayFor(model => model.MainPost.ViewCount)</span>　
+                <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
+            </span>
         </div>
         <div class="col-11 m-auto pt-3">
-            @Html.Raw(HttpUtility.HtmlDecode(Model.PostContent))
+            @Html.Raw(HttpUtility.HtmlDecode(Model.MainPost.PostContent))
 
         </div>
-
-
-
     </div>
-    @{
-        if (Model.Updated != null)
+        @{
+            if (Model.MainPost.Updated != null)
         {
-            <div class="small text-light">文章最後更新時間：@Model.Updated</div>
+            <div class="small text-body text-opacity-50 text-end">最後更新時間：@Model.MainPost.Updated</div>
         }
     }
-</div>
+    <hr />
+        <div class="bg-info">
+            @{
+                foreach (var comment in Model.Comments)
+                {
+                    <div>@comment.Comment</div>
+                }
+            }
+        </div>
+</div>　
 </div>
 
+@*#2之後的部分*@
+@{
+    foreach(var item in Model.Replies)
+    {
+        <br />
+<div class="bg-primary bg-opacity-10 rounded-3">　
+    <div class="bg-body rounded-3 border mx-3 p-3">
+        <div class="p-3">
+            <div class="border-bottom row">
+                <span class="col-8">作者：@item.Account.UserName</span>
+                <span class="col-4 text-end">
+                    <span class="small text-body-tertiary">@item.Created</span>　
+                    <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
+                </span>
+            </div>
+            <div class="col-11 m-auto pt-3">
+                @Html.Raw(HttpUtility.HtmlDecode(item.PostContent))
 
+            </div>
+        </div>
+        @{
+            if (item.Updated != null)
+            {
+                        <div class="small text-body text-opacity-50 text-end">最後更新時間：@item.Updated</div>
+                    }
+                }
+                <hr />
+
+    </div>　
+</div>
+    }
+}
 
 <p>
     @Html.ActionLink("回上一頁", "PostList", "Forum", new { categoryId = categoryId }, null)

@@ -3,12 +3,10 @@
 @using X.PagedList.Web.Common;
 
 @model IPagedList<ForumPost>
-@*@model IEnumerable<WantSoraCoreMVC.Models.ForumPost>*@
 
 @{
     ViewData["Title"] = "PostList";
     int categoryId = ViewBag.CategoryId;
-
 }
 
 
@@ -66,9 +64,10 @@
                 <span class="text-secondary">@Html.DisplayFor(modelItem => item.Account.UserName)</span>
             </td>
             <td class="text-center">
-                @{
-                    int count = item.ForumPostComments.Count(c => c.Status == 1 || c.Status == 4);
-                }
+                    @{
+                        int postID = item.PostId;
+                        int count = Convert.ToInt32(item.InverseParent.Count);
+                    }
                 @count <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
             </td>
             <td class="text-center">

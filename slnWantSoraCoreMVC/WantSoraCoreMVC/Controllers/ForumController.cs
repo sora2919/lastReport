@@ -2,7 +2,9 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using System.Xml.Linq;
 using WantSoraCoreMVC.Models;
+using WantSoraCoreMVC.ViewModels;
 using X.PagedList;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -34,6 +36,7 @@ namespace WantSoraCoreMVC.Controllers
         {
             ViewBag.CurrentSort = OrderBy;
             ViewBag.CurrentQ = q;
+            
 
             if (categoryId == null)
                 return RedirectToAction("CategoryList");
@@ -45,6 +48,7 @@ namespace WantSoraCoreMVC.Controllers
                         .Include(p => p.ForumPostComments).ThenInclude(c => c.Account)
                         where p.ForumPostCategories.FirstOrDefault().CategoryId == categoryId
                         where p.Status == 1 || p.Status == 4
+                        where p.Parent == null
                         select p;
 
 
@@ -64,7 +68,6 @@ namespace WantSoraCoreMVC.Controllers
                 case "Date_desc":
                     posts = posts.OrderByDescending(p => p.Created);
                     break;
-                // Add more cases for other sorting options if needed
                 default:
                     posts = posts.OrderByDescending(p => p.Created);
                     break;
@@ -87,9 +90,19 @@ namespace WantSoraCoreMVC.Controllers
             var post = db.ForumPosts
                         .Include(p => p.ForumPostCategories).ThenInclude(pc => pc.Category)
                         .Include(p => p.Account)
-                        .Include(p => p.ForumPostComments).ThenInclude(c => c.StatusNavigation)
-                        .Include(p => p.ForumPostComments).ThenInclude(c => c.Account)
+                        .Where(p=>p.ParentId==null&&(p.Status==1||p.Status == 4))
                         .FirstOrDefault(p => p.PostId == (int)postID);
+
+            var replies = db.ForumPosts
+                        .Include(p => p.Account)
+                        .Where(p => p.ParentId == postID)
+                        .Where(p=>p.ParentId== postID && (p.Status == 1 || p.Status == 4))
+                        .ToList();
+
+            var postComment = db.ForumPostComments
+                        .Include(c => c.Account)
+                        .Where(c => c.PostId == postID && (c.Status == 1 || c.Status == 4))
+                        .ToList();
 
             //-----------------------觀看次數-----------------------------
             int viewCount = 0;
@@ -114,7 +127,12 @@ namespace WantSoraCoreMVC.Controllers
                 _memoryCache.Set("ViewCount_" + postID, viewCount, cacheEntryOptions);
             }
 
-            return View(post);
+            var viewModel = new ForumPostViewModel();
+            viewModel.MainPost = post;
+            viewModel.Replies = replies;
+            viewModel.Comments = postComment;
+
+            return View(viewModel);
         }
 
         public IActionResult CreatePost(int? categoryId)

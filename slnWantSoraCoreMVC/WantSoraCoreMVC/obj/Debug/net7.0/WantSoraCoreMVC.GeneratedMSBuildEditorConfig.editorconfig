@@ -9,53 +9,53 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WantSoraCoreMVC
 build_property.RootNamespace = WantSoraCoreMVC
-build_property.ProjectDir = C:\fork\lastReport\slnWantSoraCoreMVC\WantSoraCoreMVC\
+build_property.ProjectDir = D:\FORK\lastReport\slnWantSoraCoreMVC\WantSoraCoreMVC\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\fork\lastReport\slnWantSoraCoreMVC\WantSoraCoreMVC
+build_property.MSBuildProjectDirectory = D:\FORK\lastReport\slnWantSoraCoreMVC\WantSoraCoreMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/CategoryList.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/CategoryList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/CreatePost.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/CreatePost.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cQ3JlYXRlUG9zdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/PostList.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/PostList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cUG9zdExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/PostView.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/PostView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cUG9zdFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Home/Index.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Home/Privacy.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/Error.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/_ViewImports.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/_ViewStart.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/_Layout.cshtml]
+[D:/FORK/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-b9npjiypj0
