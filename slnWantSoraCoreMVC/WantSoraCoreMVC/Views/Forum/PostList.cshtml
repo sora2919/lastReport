@@ -2,7 +2,7 @@
 @using X.PagedList.Mvc.Core;
 @using X.PagedList.Web.Common;
 
-@model IPagedList<ForumPost>
+@model WantSoraCoreMVC.ViewModels.ForumPostListModel
 
 @{
     ViewData["Title"] = "PostList";
@@ -16,25 +16,29 @@
 <nav class="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/Forum">討論區</a></li>
-        <li class="breadcrumb-item active">@Model.FirstOrDefault().ForumPostCategories.FirstOrDefault().Category.Title</ li >
+        <li class="breadcrumb-item active">@Model.PagedPosts.FirstOrDefault().ForumPostCategories.FirstOrDefault().Category.Title</ li >
     </ol>
 </nav>
-<p>
+
+<div class="d-inline-flex mb-3">
+    <span class="btn-group  me-3 btn btn-light btn-round">
+    <i class="bi bi-pen-fill"></i>
     @Html.ActionLink("發表文章", "CreatePost", new { categoryId = categoryId })
-</p>
+</span>
 
 @using (Html.BeginForm())
 {
-    <div class="qodef-form-holder">
-        <input type="text" placeholder="Search forums..." class="qodef-search-field" autocomplete="off" name="q" tabindex="101" value="@ViewBag.CurrentQ">
-        <button tabindex="102" class="button" type="submit" value=""><i class="bi bi-search"></i></button>
-    </div>
+        <span class="input-group">
+            <input type="text" placeholder="Search forums..." class="form-control" autocomplete="off" name="q" tabindex="101" value="@ViewBag.CurrentQ">
+            <button tabindex="102" class="input-group-text" type="submit" value=""><i class="bi bi-search"></i></button>
+    </span>
 }
-
+</div>
 
 <div class="row">
-<table class="table text-start form-text align-middle">
-    <tr class="h6">
+    <table class="table text-start align-middle">
+        <thead class="table-primary">
+        <tr>
         <th class="col-4">
             文章標題
         </th>
@@ -55,8 +59,9 @@
             最新回覆時間
         </th>
     </tr>
+        </thead>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.PagedPosts)
     {
         <tr>
             <td>
@@ -66,9 +71,10 @@
             <td class="text-center">
                     @{
                         int postID = item.PostId;
-                        int count = Convert.ToInt32(item.InverseParent.Count);
+                        int replyCount = Model.ReplyCounts.ContainsKey(postID) ? Model.ReplyCounts[postID] : 0;
+
                     }
-                @count <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
+                    @replyCount <i class="bi bi-reply-fill"></i> / @Html.DisplayFor(modelItem => item.ViewCount)  <i class="bi bi-eye-fill"></i>
             </td>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Created)
@@ -89,7 +95,7 @@
 <div class="pagination justify-content-center"
 
 
-@Html.PagedListPager(Model, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}),new PagedListRenderOptions {
+@Html.PagedListPager(Model.PagedPosts, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}),new PagedListRenderOptions {
     DisplayLinkToIndividualPages = true,
     DisplayPageCountAndCurrentLocation = false,
     MaximumPageNumbersToDisplay = 10,

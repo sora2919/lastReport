@@ -21,68 +21,107 @@
 <div class="bg-primary bg-opacity-10 rounded-3">　
     <div class="bg-body rounded-3 border mx-3 p-3">
         <h4 class="border-bottom"><i class="bi bi-chat-right-heart-fill text-danger text-opacity-50"></i> @Model.MainPost.Title</h4>
-    <div class="p-3">
-        <div class="border-bottom row">
-            <span class="col-8">作者：@Model.MainPost.Account.UserName</span>
-                <span class="col-4 text-end">　
-                <span class="small text-body-tertiary">@Model.MainPost.Created</span>　
-                <span class="small small text-body-tertiary">觀看次數: @Html.DisplayFor(model => model.MainPost.ViewCount)</span>　
-                <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
-            </span>
-        </div>
-        <div class="col-11 m-auto pt-3">
-            @Html.Raw(HttpUtility.HtmlDecode(Model.MainPost.PostContent))
-
-        </div>
-    </div>
-        @{
-            if (Model.MainPost.Updated != null)
-        {
-            <div class="small text-body text-opacity-50 text-end">最後更新時間：@Model.MainPost.Updated</div>
-        }
-    }
-    <hr />
-        <div class="bg-info">
-            @{
-                foreach (var comment in Model.Comments)
-                {
-                    <div>@comment.Comment</div>
-                }
-            }
-        </div>
-</div>　
-</div>
-
-@*#2之後的部分*@
-@{
-    foreach(var item in Model.Replies)
-    {
-        <br />
-<div class="bg-primary bg-opacity-10 rounded-3">　
-    <div class="bg-body rounded-3 border mx-3 p-3">
         <div class="p-3">
             <div class="border-bottom row">
-                <span class="col-8">作者：@item.Account.UserName</span>
+                <span class="col-8">作者：@Model.MainPost.Account.UserName</span>
                 <span class="col-4 text-end">
-                    <span class="small text-body-tertiary">@item.Created</span>　
+                    <span class="small text-body-tertiary">@Model.MainPost.Created</span>
+                    <span class="small small text-body-tertiary">觀看次數: @Html.DisplayFor(model => model.MainPost.ViewCount)</span>
                     <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
                 </span>
             </div>
             <div class="col-11 m-auto pt-3">
-                @Html.Raw(HttpUtility.HtmlDecode(item.PostContent))
+                @Html.Raw(HttpUtility.HtmlDecode(Model.MainPost.PostContent))
 
             </div>
         </div>
         @{
-            if (item.Updated != null)
+            if (Model.MainPost.Updated != null)
             {
+                <div class="small text-body text-opacity-50 text-end">最後更新時間：@Model.MainPost.Updated</div>
+            }
+        }
+        <hr />
+        <div class="row justify-content-end me-1 small">
+        <div class="bg-light col-11">
+            @{
+                int count = 0;
+                foreach (var comment in Model.Comments)
+                {
+                    count++;
+                        <div class="flex-column">
+                            <span class="text-info">@comment.Account.UserName</span>
+                            <span class="ml-auto">-@comment.Comment</span>
+                                
+                         <div class="small">B@(count) @comment.Created</div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    </div>　
+</div>
+
+@*#2之後的部分*@
+@{
+    foreach (var item in Model.Replies)
+    {
+        if (item.Status == 3)//處理已刪除回文的顯示
+        {
+            <br />
+            <div class="bg-primary bg-opacity-10 rounded-3">　
+                <div class="bg-body rounded-3 border mx-3 p-3">
+                    <div class="px-3">
+                        <div class="border-bottom row">
+                            
+                        </div>
+
+                        <div class="col-11 m-auto text-body d-inline-flex align-middle">
+                            <i class="bi bi-trash-fill text-danger text-opacity-50"></i>此文章已刪除
+                            <span class="text-body text-opacity-50 ms-3">作者：@item.Account.UserName</span>
+                            @{
+                                if (item.Updated != null)
+                                {
+                                    <span class="small text-body text-opacity-50 ms-3">刪除時間：@item.Updated</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <hr class="m-0" />
+                </div>　
+            </div>
+        }
+        else{//正常回文的顯示
+        <br />
+        <div class="bg-primary bg-opacity-10 rounded-3">　
+            <div class="bg-body rounded-3 border mx-3 p-3">
+                <div class="p-3">
+                    <div class="border-bottom row">
+                        <span class="col-8">作者：@item.Account.UserName</span>
+                        <span class="col-4 text-end">
+                            <span class="small text-body-tertiary">@item.Created</span>
+                            <span class="badge rounded-pill bg-primary bg-opacity-25 bi bi-star-fill text-danger text-opacity-75">Like</span>
+                        </span>
+                    </div>
+
+                    <div class="col-11 m-auto pt-3">
+                        @Html.Raw(HttpUtility.HtmlDecode(item.PostContent))
+                    </div>
+
+
+
+                </div>
+                @{
+                    if (item.Updated != null)
+                    {
                         <div class="small text-body text-opacity-50 text-end">最後更新時間：@item.Updated</div>
                     }
                 }
                 <hr />
 
-    </div>　
-</div>
+            </div>　
+        </div>
+        }
     }
 }
 

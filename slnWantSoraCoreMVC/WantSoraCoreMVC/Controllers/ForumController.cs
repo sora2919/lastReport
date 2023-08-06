@@ -2,6 +2,8 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Hosting;
+using System.Linq;
 using System.Xml.Linq;
 using WantSoraCoreMVC.Models;
 using WantSoraCoreMVC.ViewModels;
@@ -74,10 +76,18 @@ namespace WantSoraCoreMVC.Controllers
             }
 
             ViewBag.CategoryId = categoryId;
-
+            ForumPostListModel viewmodel=new ForumPostListModel();
             int pageSize = 10;
-            IPagedList<ForumPost> pagedPosts = posts.ToPagedList(page, pageSize);
-            return View(pagedPosts);
+
+            var postIDs = posts.Select(p => p.PostId).ToList();
+            var replyCounts = db.ForumPosts
+                                .Where(p => postIDs.Contains(p.ParentId ?? 0)&&p.Status!=2)
+                                .GroupBy(p => p.ParentId)
+                                .ToDictionary(g => g.Key ?? 0, g => g.Count());
+
+            viewmodel.ReplyCounts = replyCounts;
+            viewmodel.PagedPosts = posts.ToPagedList(page, pageSize);
+            return View(viewmodel);
 
 
         }
@@ -96,7 +106,7 @@ namespace WantSoraCoreMVC.Controllers
             var replies = db.ForumPosts
                         .Include(p => p.Account)
                         .Where(p => p.ParentId == postID)
-                        .Where(p=>p.ParentId== postID && (p.Status == 1 || p.Status == 4))
+                        .Where(p=>p.ParentId== postID && (p.Status !=2))
                         .ToList();
 
             var postComment = db.ForumPostComments
