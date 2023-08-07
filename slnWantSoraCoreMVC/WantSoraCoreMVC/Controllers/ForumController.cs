@@ -114,6 +114,16 @@ namespace WantSoraCoreMVC.Controllers
                         .Where(c => c.PostId == postID && (c.Status == 1 || c.Status == 4))
                         .ToList();
 
+            var postReply= db.ForumPostComments
+                          .Include(p => p.Account)
+                          .Where(p => p.PostId == replies.FirstOrDefault().PostId)
+                          .ToList();
+
+
+
+
+
+
             //-----------------------觀看次數-----------------------------
             int viewCount = 0;
             //建立MemoryCache，先確定是否有某篇文章的KEY存在
@@ -140,7 +150,8 @@ namespace WantSoraCoreMVC.Controllers
             var viewModel = new ForumPostViewModel();
             viewModel.MainPost = post;
             viewModel.Replies = replies;
-            viewModel.Comments = postComment;
+            viewModel.MainComments = postComment;
+            viewModel.SecondComments = postReply;
 
             return View(viewModel);
         }

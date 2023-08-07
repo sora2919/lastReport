@@ -47,7 +47,7 @@
         <div class="bg-light col-11">
             @{
                 int count = 0;
-                foreach (var comment in Model.Comments)
+                foreach (var comment in Model.MainComments)
                 {
                     count++;
                         <div class="flex-column">
@@ -122,7 +122,24 @@
                     }
                 }
                 <hr />
+                        @*2樓以後留言*@
+                        <div class="row justify-content-end me-1 small">
+                            <div class="bg-light col-11">
+                                @{
+                                    int count2 = 0;
+                                    foreach (var comment in Model.SecondComments)
+                                    {
+                                        count2++;
+                                        <div class="flex-column">
+                                            <span class="text-info">@comment.Account.UserName</span>
+                                            <span class="ml-auto">-@comment.Comment</span>
 
+                                            <div class="small">B@(count2) @comment.Created</div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
             </div>　
         </div>
         }

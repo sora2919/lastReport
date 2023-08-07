@@ -6,7 +6,8 @@ namespace WantSoraCoreMVC.ViewModels
     {
         public ForumPost MainPost { get; set; }
         public List<ForumPost> Replies { get; set; }
-        public List<ForumPostComment> Comments { get; set; }
+        public List<ForumPostComment> MainComments { get; set; }
+        public List<ForumPostComment> SecondComments { get; set; }
 
     }
 }
