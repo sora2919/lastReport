@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\fork\lastReport\slnWantSoraCoreMVC\WantSoraCoreMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Chat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/fork/lastReport/slnWantSoraCoreMVC/WantSoraCoreMVC/Views/Forum/CategoryList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

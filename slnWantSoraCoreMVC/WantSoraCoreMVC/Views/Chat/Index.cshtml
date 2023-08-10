@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="row">
+<div class="col-2 card">
+    <div id="userPic"></div>
+</div>
+<div class="col-10 card">右邊</div>
+</div>
+
+@section Scripts{
+    <script>
+        const userPic = document.querySelector('#userPic');
+
+        async function loadUser() {
+            const response = await fetch('@Url.Content("/ChatApi/UserList/")');
+            const data = await response.json();
+            const user = data.map(u => `<div>${u.name}<div>
+                             <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle" width=50px>`)
+            userPic.innerHTML = user.join("")
+        }
+
+            loadUser()
+    </script>
+}
