@@ -4,22 +4,25 @@
 }
 
 <h1>Index</h1>
-<div class="row">
-<div class="col-2 card">
-    <div id="userPic"></div>
-</div>
-<div class="col-10 card">右邊</div>
+<div class="row g-2">
+    <div class="col-3 list-group " id="userPic">
+        
+    </div>
+    <div class="col-9 card">右邊</div>
 </div>
 
 @section Scripts{
     <script>
         const userPic = document.querySelector('#userPic');
-
         async function loadUser() {
-            const response = await fetch('@Url.Content("/ChatApi/UserList/")');
+            const response = await fetch('@Url.Content("~/ChatApi/UserList/")');
             const data = await response.json();
-            const user = data.map(u => `<div>${u.name}<div>
-                             <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle" width=50px>`)
+            const user = data.map(u => `
+                     <div class="list-group-item list-group-item-action list-group-flush">
+                     <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle col-3" width=300px>
+                     <span class="col-8">${u.name}<span>
+                     </div>
+                    `)
             userPic.innerHTML = user.join("")
         }
 

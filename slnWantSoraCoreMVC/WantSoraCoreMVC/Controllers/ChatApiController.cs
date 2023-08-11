@@ -24,17 +24,20 @@ namespace WantSoraCoreMVC.Controllers
                       .Distinct().ToList();
 
             //JOIN參考資料 https://ithelp.ithome.com.tw/articles/10196394?sc=iThelpR
-            var usersInfo = users
-                .Join(db.MemberAccounts, a => a, member => member.AccountId, (userId, member) => member)
+            //https://www.tutorialsteacher.com/linq/linq-joining-operator-join
+            var usersInfo = users//這裡是outer
+                //下面依序是innet、outer要抓的、inner要抓的、最後要選的資料
+                .Join(db.MemberAccounts, a => a, member => member.AccountId, (a, member) => member)
                 .Select(u => new
                 {
                     u.Name,
                     u.UserName,
-                    u.MemberPhoto
+                    u.MemberPhoto,
                 })
                 .ToList();
-
             return Json(usersInfo);
         }
+
+
     }
 }
