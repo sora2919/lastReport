@@ -4,11 +4,11 @@
 }
 
 <h1>Index</h1>
-<div class="row g-2">
-    <div class="col-3 list-group " id="userPic">
+<div class="row" style="height:300px">
+    <div class="col-md-3 list-group custom-list-group" id="userPic" style="max-height: 100%; overflow-y: auto;">
         
     </div>
-    <div class="col-9 card">右邊</div>
+    <div class="col-md-9 card justify-content-center align-items-center" id="chatDetail">請選擇聊天對象以開始對話</div>
 </div>
 
 @section Scripts{
@@ -17,15 +17,73 @@
         async function loadUser() {
             const response = await fetch('@Url.Content("~/ChatApi/UserList/")');
             const data = await response.json();
-            const user = data.map(u => `
-                     <div class="list-group-item list-group-item-action list-group-flush">
-                     <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle col-3" width=300px>
-                     <span class="col-8">${u.name}<span>
+            const user = data.map(u =>{
+                const messageTime = new Date(u.latestMessage.created);//這個是以毫秒為單位
+                const nowTime=new Date();
+                const timeGap = nowTime - messageTime;
+                const messageDate = messageTime.getDate();
+                const currentDate = nowTime.getDate();
+
+                let timeDisplay;
+                if (currentDate === messageDate) 
+                {
+                    const options = { hour: 'numeric', minute: 'numeric', hour12: false };//24H制
+                    timeDisplay = messageTime.toLocaleTimeString(undefined, options);
+                }
+                else if (timeGap < 1 * 24 * 60 * 60 * 1000) //24H*60M*60S 一天內但已經換日
+                {
+                    const options = { hour: 'numeric', minute: 'numeric', hour12: false };
+                    timeDisplay = '昨天'+messageTime.toLocaleTimeString(undefined,options);
+                }
+                else if (timeGap < 3 * 24 * 60 * 60 * 1000) //三天內
+                {
+                    const days = Math.floor(timeGap / (24 * 60 * 60 * 1000));
+                    timeDisplay = `${days} 天前`
+                }
+                else {//超過三天
+                    const options = { month: 'numeric', day: 'numeric' };
+                    timeDisplay = messageTime.toLocaleDateString(undefined, options);
+                }
+                return`
+                        <div class="list-group-item list-group-item-action list-group-flush d-flex align-items-center" style="height:100px">
+                          <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle img-thumbnail user-image col-2 ">
+                                    <div class="col-10 mx-2">
+                             <span class="">${u.name}</span> <span class="small float-end">${timeDisplay}</span>
+                             </br>
+                             <span class="small">${u.latestMessage.message}</span>
+                             </div>
                      </div>
-                    `)
+                            `})
             userPic.innerHTML = user.join("")
         }
 
             loadUser()
     </script>
+}
+
+@section Styles{
+    <style>
+        ::-webkit-scrollbar { /* 調整捲軸寬度 */
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb { /* 調整捲軸拉把部分 */
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track { /* 調整捲軸滑軌部分 */
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-list-group {
+            padding-right: 0; /* 調整list-group 右側padding的空間 */
+        }
+
+        .user-image {
+            max-width: 50px; /* 最大寬度 */
+            max-height: 50px; /* 最大高度 */
+        }
+    </style>
 }
