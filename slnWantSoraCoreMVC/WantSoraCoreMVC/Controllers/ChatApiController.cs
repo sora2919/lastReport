@@ -41,7 +41,7 @@ namespace WantSoraCoreMVC.Controllers
                                                        (chat.ReceiverId == loginID && chat.SenderId == member.AccountId))
                                                 .OrderByDescending(chat => chat.Created)
                                                 .Select(chat => new { chat.Message,
-                                                                      chat.Created})
+                                                    chat.Created })
                                                 .FirstOrDefault()
                             }).ToList();
             return Json(usersInfo);

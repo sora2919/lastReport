@@ -10,6 +10,7 @@ namespace WantSoraCoreMVC.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.currentLoginId=loginID;
             return View();
         }
 
