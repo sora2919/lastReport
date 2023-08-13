@@ -44,18 +44,47 @@
                     const options = { month: 'numeric', day: 'numeric' };
                     timeDisplay = messageTime.toLocaleDateString(undefined, options);
                 }
-                return`
-                        <div class="list-group-item list-group-item-action list-group-flush d-flex align-items-center" style="height:100px">
-                          <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle img-thumbnail user-image col-2 ">
-                                    <div class="col-10 mx-2">
-                             <span class="">${u.name}</span> <span class="small float-end">${timeDisplay}</span>
-                             </br>
-                             <span class="small">${u.latestMessage.message}</span>
-                             </div>
-                     </div>
-                            `})
-            userPic.innerHTML = user.join("")
-        }
+
+                const chatLink=document.createElement('a');//自動生成的a標籤
+                chatLink.href='#';
+                chatLink.classList.add('chatLink', 'link-underline', 'link-underline-opacity-0');
+                chatLink.setAttribute('inChatWithId', u.accountId);
+                chatLink.setAttribute('inPage', '1');
+                chatLink.innerHTML = //裡面包的html
+                `<div class="list-group-item list-group-item-action list-group-flush d-flex align-items-center" style="height:100px">
+                     <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle img-thumbnail user-image col-2 ">
+                         <div class="col-10 mx-2">
+                              <span class="">${u.name}</span> <span class="small float-end">${timeDisplay}</span>
+                              </br>
+                              <span class="small">${u.latestMessage.message}</span>
+                           </div>
+                 </div>`;
+
+                //點下聊天對象監聽器
+                chatLink.addEventListener('click', async (event) => {
+                    event.preventDefault();//防止連結預設的#
+                    const jsChatWithId = chatLink.getAttribute('inChatWithId')
+                    const jsPage = chatLink.getAttribute('inPage');
+
+
+                    const response = await fetch(`@Url.Content("~/ChatApi/ChatDetail")?chatWithId=${jsChatWithId}&page=${jsPage}`);
+
+                    const chatDetailData = await response.json();
+
+                    const chatDetailDiv = document.querySelector('#chatDetail');
+                    chatDetailDiv.innerHTML = ''; // 清空原內容
+                    chatDetailData.map(chat => {
+                        const chatMessage = document.createElement('div');
+                        chatMessage.textContent = chat.message; // 使用 API 回傳的聊天訊息資料
+
+                        chatDetailDiv.appendChild(chatMessage);
+                    })
+                })
+
+                userPic.appendChild(chatLink);
+            
+            })
+        }          
 
             loadUser()
     </script>
@@ -85,5 +114,7 @@
             max-width: 50px; /* 最大寬度 */
             max-height: 50px; /* 最大高度 */
         }
+
+
     </style>
 }

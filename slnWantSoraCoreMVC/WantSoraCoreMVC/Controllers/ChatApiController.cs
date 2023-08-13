@@ -54,7 +54,13 @@ namespace WantSoraCoreMVC.Controllers
             int pageNow = page;
             int perpage = 30;//每頁筆數
             int totalPage = (int)Math.Floor(countTotal / perpage) + 1;
-            return Json();
+
+            var chatInfo = _db.ChatMessages
+                         .Where(chat =>
+                                    (chat.SenderId == loginID && chat.ReceiverId == chatWithId) ||
+                                    (chat.ReceiverId == loginID && chat.SenderId == chatWithId))
+                         .OrderByDescending(chat => chat.Created).Select(chat=>chat);
+            return Json(chatInfo);
         }
     }
 }
