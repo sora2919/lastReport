@@ -17,7 +17,9 @@
         async function loadUser() {
             const response = await fetch('@Url.Content("~/ChatApi/UserList/")');
             const data = await response.json();
-            const user = data.map(u =>{
+            let chatAvaterUrl;//存聊天對象頭像備用
+
+            const user = data.map(u =>{//抓左邊聊天對象列表的map
                 const messageTime = new Date(u.latestMessage.created);//這個是以毫秒為單位
                 const nowTime=new Date();
                 const timeGap = nowTime - messageTime;
@@ -45,6 +47,7 @@
                     timeDisplay = messageTime.toLocaleDateString(undefined, options);
                 }
 
+                chatAvaterUrl =`data:image/png;base64,${u.memberPhoto}`;
                 const chatLink=document.createElement('a');//自動生成的a標籤
                 chatLink.href='#';
                 chatLink.classList.add('chatLink', 'link-underline', 'link-underline-opacity-0');
@@ -52,13 +55,14 @@
                 chatLink.setAttribute('inPage', '1');
                 chatLink.innerHTML = //裡面包的html
                 `<div class="list-group-item list-group-item-action list-group-flush d-flex align-items-center" style="height:100px">
-                     <img src="data:image/png;base64,${u.memberPhoto}" class="rounded-circle img-thumbnail user-image col-2 ">
+                             <img src="${chatAvaterUrl}" class="rounded-circle img-thumbnail user-image col-2 ">
                          <div class="col-10 mx-2">
                               <span class="">${u.name}</span> <span class="small float-end">${timeDisplay}</span>
                               </br>
                               <span class="small">${u.latestMessage.message}</span>
                            </div>
                  </div>`;
+                 
 
                 //點下聊天對象監聽器
                 chatLink.addEventListener('click', async (event) => {
@@ -74,16 +78,32 @@
                     const chatDetailDiv = document.querySelector('#chatDetail');
                     chatDetailDiv.innerHTML = ''; // 清空原內容
                     chatDetailData.map(chat => {
-                        const chatMessage = document.createElement('span');
-                        chatMessage.textContent = chat.message; // 使用 API 回傳的聊天訊息資料
+                        const chatContainer = document.createElement('div');
+                        chatContainer.classList.add('chat-container', 'd-flex');
+
+                        const chatAvatar = document.createElement('img');
+                        chatAvatar.src = chatAvaterUrl;
+                        chatAvatar.classList.add('chat-avatar');
+
+                        const chatMessage = document.createElement('div');
+                        chatMessage.textContent = chat.message;
+                        chatMessage.classList.add('chat-message');
+
+
                         if (chat.receiverId === currentLoginId) {
                             chatMessage.classList.add('message-left', 'chat-bubble');
-                        }
-                        else{
+                            chatContainer.appendChild(chatAvatar);
+
+                        } else {
+
                             chatMessage.classList.add('message-right', 'chat-bubble');
 
                         }
-                        chatDetailDiv.appendChild(chatMessage);
+
+                        chatContainer.appendChild(chatMessage);
+
+                        chatDetailDiv.appendChild(chatContainer);
+
                     })
                 })
 
@@ -127,17 +147,17 @@
             padding: 10px 18px;
             position: relative;
             margin: 10px;
-            max-width: 300px;
+            max-width: 400px;
         }
 
         .message-left {
             float: left;
             position: relative;
-            background: #cdd5d6;
+            background: #cdcdcd;
             border-radius: .4em;
         }
 
-      .message-left::after {
+        .message-left::after {
                 content: '';
                 position: absolute;
                 left: 0;
@@ -159,7 +179,7 @@
             border-radius: .4em;
         }
 
-            .message-right::after {
+        .message-right::after {
             content: '';
             position: absolute;
             right: 0;
@@ -175,12 +195,22 @@
             margin-right: -10px;
         }
 
-        .chat{
-            width: 50%;
-            height: 320px;
+        .chat-avatar {
+            width: 40px; /* 設定頭像寬度 */
+            height: 40px; /* 設定頭像高度 */
+            margin-right: 10px; /* 設定頭像和聊天訊息之間的間距 */
+            border-radius: 50%; /* 設定頭像為圓形 */
         }
 
+        .chat-container {
+            display: flex; /* 使用 flex 排列元素 */
+            align-items: center; /* 垂直置中元素 */
+            margin-bottom: 10px; /* 設定訊息之間的間距 */
+        }
 
+        .chat-message {
+            width: 350px;
+        }
 
     </style>
 }
