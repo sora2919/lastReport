@@ -90,28 +90,35 @@
 
                         let chatAvatar = document.createElement('img');
                         chatAvatar.src = chatAvaterUrl;
-                        chatAvatar.classList.add('chat-avatar', 'img-thumbnail');
 
-                        const chatMessage = document.createElement('div');
+                        const chatMessage = document.createElement('span');
                         chatMessage.textContent = chat.message;
                         chatMessage.classList.add('chat-message');
 
+                        const messageTimeEle = document.createElement('span');
+                        const messageTime = new Date(chat.created);
+                        const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
+                        messageTimeEle.textContent = messageTime.toLocaleString(undefined, options);
+                        messageTimeEle.classList.add('message-time','small');
+
                         if (chat.receiverId === currentLoginId) {
                             chatMessage.classList.add('message-left', 'chat-bubble');//訊息樣式
+                            chatAvatar.classList.add( 'chat-avatar', 'img-thumbnail');
+                            chatContainer.appendChild(messageTimeEle);//加入對話時間
                             chatContainer.appendChild(chatAvatar);//加入頭像
                             chatContainer.appendChild(chatMessage);//加入對話
+
 
 
                         } else {
                             chatAvatar.src = @Html.Raw(Json.Serialize(ViewBag.currentLoginAvatarUrl));
+                            chatAvatar.classList.add('chat-avatar', 'img-thumbnail');
                             chatMessage.classList.add('message-right', 'chat-bubble');
                             chatContainer.appendChild(chatMessage);//加入對話
                             chatContainer.appendChild(chatAvatar);//加入頭像
+                            chatContainer.appendChild(messageTimeEle);//加入對話時間
+
                         }
-
-                        chatContainer.classList.add('col', 'justify-content-center');
-
-
                         chatDetailDiv.appendChild(chatContainer);
 
                     })
@@ -158,11 +165,10 @@
             padding: 10px 18px;
             position: relative;
             margin: 10px;
-            max-width: 400px;
+            min-width: 400px;
         }
 
         .message-left {
-            float: left;
             position: relative;
             background: #cdcdcd;
             border-radius: .4em;
@@ -184,7 +190,6 @@
         }
 
         .message-right {
-            float: right;
             position: relative;
             background: #9ad2da;
             border-radius: .4em;
@@ -210,26 +215,25 @@
             width: 50px; /* 設定頭像寬度 */
             height: 50px; /* 設定頭像高度 */
             margin-right: 10px; /* 設定頭像和聊天訊息之間的間距 */
+            margin-left: 10px; /* 設定頭像和聊天訊息之間的間距 */
             border-radius: 50%; /* 設定頭像為圓形 */
         }
 
         .chat-container {
-            display: flex; /* 使用 flex 排列元素 */
-            align-items: center; /* 垂直置中元素 */
             margin-bottom: 20px; /* 設定訊息之間的間距 */
             overflow-y: auto;
         }
 
         .chat-message {
-            width: 350px;
+            max-width: 400px;
+            min-width:250px;
         }
 
         #chatDetail{
             width: 100%;
             max-height: 300px;
             overflow-y: auto;
-            flex-direction:column-reverse;
-        }
+            }
 
     </style>
 }
