@@ -51,15 +51,17 @@ namespace WantSoraCoreMVC.Controllers
         public IActionResult ChatDetail(int chatWithId,int page=1)
         {
             double countTotal = _db.ChatMessages.Where(p => p.SenderId == chatWithId || p.ReceiverId == chatWithId).Count();
-            int pageNow = page;
-            int perpage = 30;//每頁筆數
+            int perpage = 15;//每頁筆數
             int totalPage = (int)Math.Floor(countTotal / perpage) + 1;
 
             var chatInfo = _db.ChatMessages
                          .Where(chat =>
                                     (chat.SenderId == loginID && chat.ReceiverId == chatWithId) ||
                                     (chat.ReceiverId == loginID && chat.SenderId == chatWithId))
-                         .OrderByDescending(chat => chat.Created).Select(chat=>chat);
+                                    .OrderByDescending(chat => chat.Created)
+                                    .Skip((page-1)* perpage)
+                                    .Take(perpage)
+                                    .ToList();
             return Json(chatInfo);
         }
     }

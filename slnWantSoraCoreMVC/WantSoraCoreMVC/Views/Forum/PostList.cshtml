@@ -92,7 +92,7 @@
 </table>
 </div>
 
-<div class="pagination justify-content-center"
+<div class="pagination justify-content-center">
 
 
 @Html.PagedListPager(Model.PagedPosts, page => Url.Action("PostList", new { page, OrderBy=ViewBag.CurrentSort, q=ViewBag.CurrentQ,categoryId=categoryId}),new PagedListRenderOptions {
