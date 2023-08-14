@@ -92,6 +92,9 @@ namespace WantSoraCoreMVC.Controllers
 
         }
 
+
+
+
         public IActionResult PostView(int? postID)
         {
             if (postID == null)
@@ -115,11 +118,14 @@ namespace WantSoraCoreMVC.Controllers
                         .ToList();
 
             //todo 搜尋關鍵字後這邊會出錯
-            var postReply= _db.ForumPostComments
+
+            List<ForumPostComment> postReply = new List<ForumPostComment>();
+            if (replies.FirstOrDefault() != null) { 
+                 postReply= _db.ForumPostComments
                           .Include(p => p.Account)
                           .Where(p => p.PostId == replies.FirstOrDefault().PostId)
                           .ToList();
-
+                }
 
 
 
@@ -156,6 +162,8 @@ namespace WantSoraCoreMVC.Controllers
 
             return View(viewModel);
         }
+
+
 
         public IActionResult CreatePost(int? categoryId)
         {
