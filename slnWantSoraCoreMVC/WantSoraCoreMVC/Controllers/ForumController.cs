@@ -195,5 +195,14 @@ namespace WantSoraCoreMVC.Controllers
             return RedirectToAction("PostList", new { categoryId = categoryId });
         }
 
+
+
+
+        public IActionResult ForumMS()
+        {
+
+            return View();
+        }
+
     }
 }
